@@ -282,7 +282,11 @@ input:focus{
   font-size:12px;
   letter-spacing:1px;
 }
-.candidate h3{margin:10px 0;font-size:23px}
+.candidate h3{
+  margin:10px 0;
+  font-size:23px;
+  text-transform:uppercase;
+}
 .candidate p{font-size:13px;color:var(--muted)}
 .candidate button{width:100%;margin-top:10px}
 .candidate.selected button{
@@ -319,6 +323,9 @@ input:focus{
   color:#a57a20;
   font-weight:bold;
   font-size:14px;
+}
+#reviewName{
+  text-transform:uppercase;
 }
 
 /* KHUSUS TOMBOL TAHAP 03 */
@@ -557,7 +564,7 @@ footer{
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 1</div>
-          <h3>Omsih</h3>
+          <h3>OMSIH</h3>
           <p>Calon Kepala Desa</p>
           <button class="secondary">PILIH NOMOR 1</button>
         </div>
@@ -569,7 +576,7 @@ footer{
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 2</div>
-          <h3>Tatang Gunawan</h3>
+          <h3>TATANG GUNAWAN</h3>
           <p>Calon Kepala Desa</p>
           <button class="secondary">PILIH NOMOR 2</button>
         </div>
@@ -660,13 +667,13 @@ footer{
     <h3>Rekapitulasi Pilihan Simulasi</h3>
 
     <div class="resultrow">
-      <strong>Nomor 1 — Omsih</strong>
+      <strong>Nomor 1 — OMSIH</strong>
       <strong id="count1">0</strong>
     </div>
     <div class="bar"><div class="fill" id="bar1"></div></div>
 
     <div class="resultrow">
-      <strong>Nomor 2 — Tatang Gunawan</strong>
+      <strong>Nomor 2 — TATANG GUNAWAN</strong>
       <strong id="count2">0</strong>
     </div>
     <div class="bar"><div class="fill" id="bar2"></div></div>
@@ -778,7 +785,7 @@ function reviewVote(){
   const reviewPhotoError=document.getElementById("reviewPhotoError");
 
   document.getElementById("reviewName").textContent=
-    selected===1?"Omsih":"Tatang Gunawan";
+    selected===1?"OMSIH":"TATANG GUNAWAN";
 
   document.getElementById("reviewNumber").textContent=
     "CALON NOMOR URUT "+selected;
