@@ -164,6 +164,74 @@ input:focus{
   margin:0;
 }
 
+/* Identitas panitia pada halaman pemilihan */
+.vote-brand{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:18px;
+  padding:20px;
+  margin-bottom:28px;
+  background:linear-gradient(135deg,#f5f9fd,#eaf1f8);
+  border:1px solid #dce7f2;
+  border-radius:16px;
+}
+.logo-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  justify-self:center;
+}
+.vote-logo{
+  width:105px;
+  height:105px;
+  object-fit:contain;
+  display:block;
+}
+.logo-caption{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  text-align:center;
+  color:var(--blue);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.3px;
+}
+.vote-brand-text{
+  text-align:center;
+  min-width:220px;
+}
+.vote-brand-text h3{
+  font-size:19px;
+  line-height:1.35;
+  margin:0;
+  letter-spacing:1px;
+}
+.vote-divider{
+  width:65px;
+  height:3px;
+  background:var(--gold);
+  border-radius:5px;
+  margin:12px auto;
+}
+.vote-brand-text p{
+  color:#52647a;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  margin:0;
+}
+.vote-mascot{
+  width:125px;
+  height:145px;
+  object-fit:contain;
+  justify-self:center;
+  display:block;
+}
+
 /* Calon */
 .candidates{
   display:grid;
@@ -292,6 +360,8 @@ footer{
   border-top:1px solid #e5ebf2;
   margin-top:30px;
 }
+
+/* Tampilan tablet dan HP */
 @media(max-width:700px){
   header{padding:17px}
   header h1{font-size:15px}
@@ -303,6 +373,38 @@ footer{
   .photo{height:280px}
   .statgrid{grid-template-columns:1fr}
   button{padding:15px 17px}
+
+  .vote-brand{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "logo mascot"
+      "title title";
+    gap:14px 8px;
+    padding:16px 8px;
+  }
+  .logo-container{grid-area:logo}
+  .vote-brand-text{
+    grid-area:title;
+    min-width:0;
+  }
+  .vote-mascot{
+    grid-area:mascot;
+    width:105px;
+    height:120px;
+  }
+  .vote-logo{
+    width:85px;
+    height:85px;
+  }
+  .logo-caption{
+    font-size:9px;
+    letter-spacing:0;
+  }
+  .vote-brand-text h3{font-size:16px}
+  .vote-brand-text p{
+    font-size:10px;
+    letter-spacing:1px;
+  }
 }
 </style>
 </head>
@@ -393,6 +495,34 @@ footer{
 
 <section id="vote" class="step">
   <div class="panel center">
+
+    <!-- Identitas panitia -->
+    <div class="vote-brand">
+
+      <div class="logo-container">
+        <img class="vote-logo"
+          src="1(1).png"
+          alt="Logo Panitia Pilkades Sumurgintung">
+
+        <div class="logo-caption">
+          <strong>PANITIA PEMILIHAN KEPALA DESA</strong>
+          <strong>DESA SUMURGINTUNG</strong>
+          <strong>TAHUN 2026</strong>
+        </div>
+      </div>
+
+      <div class="vote-brand-text">
+        <h3>PESTA DEMOKRASI</h3>
+        <div class="vote-divider"></div>
+        <p>PILKADES SUMURGINTUNG 2026</p>
+      </div>
+
+      <img class="vote-mascot"
+        src="maskot.png"
+        alt="Maskot Pilkades Sumurgintung">
+
+    </div>
+
     <div class="eyebrow">Tahap 02</div>
     <h2>Silakan Pilih Calon Kepala Desa</h2>
     <p class="muted">Sentuh salah satu kartu calon di bawah ini.</p>
