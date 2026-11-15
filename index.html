@@ -97,6 +97,27 @@ h3{color:var(--blue)}
 .secondary{background:#eaf0f7;color:var(--blue)}
 .secondary:hover{background:#dce7f3}
 .gold{background:var(--gold);color:#27364a}
+
+/* Tombol khusus Tahap 03 */
+.review-change{
+  background:#dc3545;
+  color:#ffffff;
+  border:2px solid #dc3545;
+}
+.review-change:hover{
+  background:#b92736;
+  border-color:#b92736;
+}
+.review-confirm{
+  background:#123b67;
+  color:#ffffff;
+  border:2px solid #123b67;
+}
+.review-confirm:hover{
+  background:#1e568b;
+  border-color:#1e568b;
+}
+
 .notice{
   background:#fff8e9;
   border:1px solid #f3dfad;
@@ -589,8 +610,8 @@ footer{
     </div>
 
     <div class="actions">
-      <button class="secondary" onclick="showVote()">UBAH PILIHAN</button>
-      <button class="primary" onclick="confirmVote()">KONFIRMASI</button>
+      <button class="review-change" onclick="showVote()">UBAH PILIHAN</button>
+      <button class="review-confirm" onclick="confirmVote()">KONFIRMASI</button>
     </div>
   </div>
 </section>
