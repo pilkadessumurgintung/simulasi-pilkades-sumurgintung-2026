@@ -190,14 +190,20 @@ input:focus{
   background:#f8fbff;
 }
 .photo{
-  height:230px;
+  height:280px;
   background:linear-gradient(145deg,#e8eff7,#cbd9e8);
-  display:grid;
-  place-items:center;
-  color:var(--blue);
-  font-size:76px;
-  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   position:relative;
+  overflow:hidden;
+}
+.photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
 }
 .photo::after{
   content:"";
@@ -294,7 +300,7 @@ footer{
   h2{font-size:23px}
   .flow{grid-template-columns:repeat(2,1fr)}
   .candidates{grid-template-columns:1fr}
-  .photo{height:250px}
+  .photo{height:280px}
   .statgrid{grid-template-columns:1fr}
   button{padding:15px 17px}
 }
@@ -393,7 +399,9 @@ footer{
 
     <div class="candidates">
       <div class="candidate" id="candidate1" onclick="selectCandidate(1)">
-        <div class="photo">01</div>
+        <div class="photo">
+          <img src="OMSIH.jpg" alt="Foto calon kepala desa nomor urut 1, Omsih">
+        </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 1</div>
           <h3>Omsih</h3>
@@ -403,7 +411,9 @@ footer{
       </div>
 
       <div class="candidate" id="candidate2" onclick="selectCandidate(2)">
-        <div class="photo">02</div>
+        <div class="photo">
+          <img src="TATANG%20GUNAWAN.jpeg" alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan">
+        </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 2</div>
           <h3>Tatang Gunawan</h3>
