@@ -555,8 +555,7 @@ footer{
 
     <p id="voteError" style="color:#c0392b"></p>
     <div class="actions">
-      <button class="secondary" onclick="showLogin()">KEMBALI</button>
-      <button class="primary" onclick="reviewVote()">LANJUTKAN</button>
+      <button class="primary" onclick="reviewVote()">PILIH</button>
     </div>
   </div>
 </section>
@@ -750,28 +749,23 @@ function reviewVote(){
     return;
   }
 
-  // Ambil foto langsung dari kartu calon yang dipilih di Tahap 02.
   const selectedCard=document.getElementById("candidate"+selected);
   const candidateImage=selectedCard.querySelector(".photo img");
   const reviewPhoto=document.getElementById("reviewPhoto");
   const reviewPhotoError=document.getElementById("reviewPhotoError");
 
-  // Atur nama dan nomor calon.
   document.getElementById("reviewName").textContent=
     selected===1?"Omsih":"Tatang Gunawan";
 
   document.getElementById("reviewNumber").textContent=
     "CALON NOMOR URUT "+selected;
 
-  // Tampilkan foto yang sama dengan foto pada kartu pilihan.
   reviewPhotoError.style.display="none";
   reviewPhoto.style.display="block";
   reviewPhoto.alt="Foto calon kepala desa nomor urut "+selected;
 
-  // Gunakan URL foto dari kartu calon yang dipilih.
   reviewPhoto.src=candidateImage.src;
 
-  // Jika foto gagal dimuat, tampilkan keterangan.
   reviewPhoto.onerror=function(){
     reviewPhoto.style.display="none";
     reviewPhotoError.style.display="block";
