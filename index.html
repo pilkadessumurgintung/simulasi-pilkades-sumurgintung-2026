@@ -297,6 +297,17 @@ input:focus{
   padding:28px;
   margin:22px 0;
 }
+.review-photo{
+  display:block;
+  width:min(100%,240px);
+  height:280px;
+  object-fit:contain;
+  object-position:center;
+  margin:18px auto;
+  border-radius:12px;
+  background:linear-gradient(145deg,#e8eff7,#cbd9e8);
+  border:1px solid #dce7f2;
+}
 .review-number{
   color:#a57a20;
   font-weight:bold;
@@ -487,7 +498,6 @@ footer{
 <section id="vote" class="step">
   <div class="panel center">
 
-    <!-- Identitas panitia: logo kiri, judul tengah, maskot kanan -->
     <div class="vote-brand">
 
       <div class="logo-container">
@@ -555,6 +565,12 @@ footer{
 
     <div class="review-card">
       <div class="eyebrow">Pilihan Anda</div>
+
+      <img id="reviewPhoto"
+        class="review-photo"
+        src=""
+        alt="Foto calon yang dipilih">
+
       <h2 id="reviewName">-</h2>
       <p id="reviewNumber" class="review-number"></p>
     </div>
@@ -726,8 +742,19 @@ function reviewVote(){
     return;
   }
 
-  document.getElementById("reviewName").textContent=
-    selected===1?"Omsih":"Tatang Gunawan";
+  const reviewPhoto=document.getElementById("reviewPhoto");
+
+  if(selected===1){
+    document.getElementById("reviewName").textContent="Omsih";
+    reviewPhoto.src=
+      "https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/OMSIH.jpg";
+    reviewPhoto.alt="Foto calon kepala desa nomor urut 1, Omsih";
+  }else{
+    document.getElementById("reviewName").textContent="Tatang Gunawan";
+    reviewPhoto.src=
+      "https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/TATANG%20GUNAWAN.jpeg";
+    reviewPhoto.alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan";
+  }
 
   document.getElementById("reviewNumber").textContent=
     "CALON NOMOR URUT "+selected;
