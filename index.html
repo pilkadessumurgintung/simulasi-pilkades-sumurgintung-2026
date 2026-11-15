@@ -47,8 +47,7 @@ header{
   border:2px solid #fff;
   box-shadow:0 4px 12px #0002;
 }
-header h1{font-size:18px;margin:0 0 6px;letter-spacing:.5px}
-header p{font-size:12px;margin:0;color:#dce8f5}
+header p{font-size:13px;margin:0;color:#dce8f5}
 nav{display:flex;gap:9px;flex-wrap:wrap}
 button{
   border:0;border-radius:10px;
@@ -167,10 +166,10 @@ input:focus{
 /* Identitas panitia dan maskot */
 .vote-brand{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr 1.5fr 1fr;
   align-items:center;
   justify-items:center;
-  gap:20px;
+  gap:18px;
   padding:25px 20px;
   margin-bottom:28px;
   background:linear-gradient(135deg,#f5f9fd,#eaf1f8);
@@ -182,7 +181,6 @@ input:focus{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:12px;
   width:100%;
 }
 .vote-logo{
@@ -192,14 +190,34 @@ input:focus{
   display:block;
 }
 .logo-caption{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
   text-align:center;
   color:var(--blue);
-  font-size:13px;
+  font-size:15px;
+  line-height:1.6;
+  letter-spacing:.3px;
+  font-weight:bold;
+}
+.committee-title{
+  text-align:center;
+  color:var(--blue);
   line-height:1.5;
-  letter-spacing:.4px;
+}
+.committee-title .main-title{
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  margin-bottom:10px;
+  color:#a57a20;
+}
+.committee-title .village-title{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.committee-title .year-title{
+  font-size:17px;
+  font-weight:bold;
+  margin-top:5px;
 }
 .vote-mascot{
   width:190px;
@@ -341,7 +359,6 @@ footer{
 /* Tampilan tablet dan HP */
 @media(max-width:700px){
   header{padding:17px}
-  header h1{font-size:15px}
   main{margin:20px auto;padding:0 13px}
   .panel{padding:24px 17px}
   h2{font-size:23px}
@@ -353,36 +370,33 @@ footer{
 
   .vote-brand{
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:12px 8px;
     padding:20px 8px;
+  }
+  .logo-container{grid-column:1}
+  .committee-title{
+    grid-column:1 / -1;
+    grid-row:2;
+  }
+  .vote-mascot{
+    grid-column:2;
+    grid-row:1;
+    width:125px;
+    height:155px;
   }
   .vote-logo{
     width:105px;
     height:105px;
   }
-  .logo-caption{
-    font-size:10px;
-    gap:5px;
-    letter-spacing:0;
-  }
-  .vote-mascot{
-    width:125px;
-    height:155px;
-  }
+  .committee-title .main-title{font-size:13px}
+  .committee-title .village-title{font-size:18px}
+  .committee-title .year-title{font-size:14px}
 }
-
 @media(max-width:380px){
-  .vote-logo{
-    width:88px;
-    height:88px;
-  }
-  .vote-mascot{
-    width:110px;
-    height:140px;
-  }
-  .logo-caption{
-    font-size:9px;
-  }
+  .vote-logo{width:88px;height:88px}
+  .vote-mascot{width:110px;height:140px}
+  .committee-title .main-title{font-size:11px}
+  .committee-title .village-title{font-size:16px}
 }
 </style>
 </head>
@@ -393,7 +407,6 @@ footer{
   <div class="brand">
     <div class="logo">P</div>
     <div>
-      <h1>PILKADES SUMURGINTUNG 2026</h1>
       <p>Simulasi Pemungutan Suara Digital</p>
     </div>
   </div>
@@ -408,7 +421,7 @@ footer{
 <section id="home" class="step active">
   <div class="panel center">
     <div class="eyebrow">Pemerintah Desa Sumurgintung</div>
-    <h2>Simulasi Pilkades Digital 2026</h2>
+    <h2>PESTA DEMOKRASI</h2>
     <p class="muted">
       Mari mengenal tata cara pemungutan suara digital
       melalui simulasi yang mudah, cepat, dan sederhana.
@@ -474,23 +487,24 @@ footer{
 <section id="vote" class="step">
   <div class="panel center">
 
-    <!-- Identitas panitia: logo dan tulisan di kiri, maskot di kanan -->
+    <!-- Identitas panitia: logo kiri, judul tengah, maskot kanan -->
     <div class="vote-brand">
 
       <div class="logo-container">
         <img class="vote-logo"
-          src="1%20(1).png"
+          src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/1%20%281%29.png"
           alt="Logo Panitia Pilkades Sumurgintung">
+      </div>
 
-        <div class="logo-caption">
-          <strong>PANITIA PEMILIHAN KEPALA DESA</strong>
-          <strong>DESA SUMURGINTUNG</strong>
-          <strong>TAHUN 2026</strong>
-        </div>
+      <div class="committee-title">
+        <div class="main-title">PESTA DEMOKRASI</div>
+        <div class="village-title">PANITIA PEMILIHAN KEPALA DESA</div>
+        <div class="village-title">DESA SUMURGINTUNG</div>
+        <div class="year-title">TAHUN 2026</div>
       </div>
 
       <img class="vote-mascot"
-        src="Maskot.png"
+        src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/Maskot.png"
         alt="Maskot Pilkades Sumurgintung">
 
     </div>
@@ -502,7 +516,7 @@ footer{
     <div class="candidates">
       <div class="candidate" id="candidate1" onclick="selectCandidate(1)">
         <div class="photo">
-          <img src="OMSIH.jpg" alt="Foto calon kepala desa nomor urut 1, Omsih">
+          <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/OMSIH.jpg" alt="Foto calon kepala desa nomor urut 1, Omsih">
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 1</div>
@@ -514,7 +528,7 @@ footer{
 
       <div class="candidate" id="candidate2" onclick="selectCandidate(2)">
         <div class="photo">
-          <img src="TATANG%20GUNAWAN.jpeg" alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan">
+          <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/TATANG%20GUNAWAN.jpeg" alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan">
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 2</div>
