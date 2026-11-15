@@ -289,7 +289,7 @@ input:focus{
   color:white;
 }
 
-/* Konfirmasi */
+/* Konfirmasi pilihan */
 .review-card{
   background:#f2f6fb;
   border:1px solid #e1e9f2;
@@ -299,14 +299,20 @@ input:focus{
 }
 .review-photo{
   display:block;
-  width:min(100%,240px);
-  height:280px;
+  width:min(100%,280px);
+  height:300px;
   object-fit:contain;
   object-position:center;
   margin:18px auto;
   border-radius:12px;
   background:linear-gradient(145deg,#e8eff7,#cbd9e8);
   border:1px solid #dce7f2;
+}
+.review-photo-error{
+  display:none;
+  color:#c0392b;
+  font-size:13px;
+  margin:10px 0;
 }
 .review-number{
   color:#a57a20;
@@ -499,7 +505,6 @@ footer{
   <div class="panel center">
 
     <div class="vote-brand">
-
       <div class="logo-container">
         <img class="vote-logo"
           src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/1%20%281%29.png"
@@ -516,7 +521,6 @@ footer{
       <img class="vote-mascot"
         src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/Maskot.png"
         alt="Maskot Pilkades Sumurgintung">
-
     </div>
 
     <div class="eyebrow">Tahap 02</div>
@@ -570,6 +574,10 @@ footer{
         class="review-photo"
         src=""
         alt="Foto calon yang dipilih">
+
+      <p id="reviewPhotoError" class="review-photo-error">
+        Foto calon tidak berhasil dimuat. Silakan kembali dan periksa pilihan.
+      </p>
 
       <h2 id="reviewName">-</h2>
       <p id="reviewNumber" class="review-number"></p>
@@ -742,22 +750,37 @@ function reviewVote(){
     return;
   }
 
+  // Ambil foto langsung dari kartu calon yang dipilih di Tahap 02.
+  const selectedCard=document.getElementById("candidate"+selected);
+  const candidateImage=selectedCard.querySelector(".photo img");
   const reviewPhoto=document.getElementById("reviewPhoto");
+  const reviewPhotoError=document.getElementById("reviewPhotoError");
 
-  if(selected===1){
-    document.getElementById("reviewName").textContent="Omsih";
-    reviewPhoto.src=
-      "https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/OMSIH.jpg";
-    reviewPhoto.alt="Foto calon kepala desa nomor urut 1, Omsih";
-  }else{
-    document.getElementById("reviewName").textContent="Tatang Gunawan";
-    reviewPhoto.src=
-      "https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/TATANG%20GUNAWAN.jpeg";
-    reviewPhoto.alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan";
-  }
+  // Atur nama dan nomor calon.
+  document.getElementById("reviewName").textContent=
+    selected===1?"Omsih":"Tatang Gunawan";
 
   document.getElementById("reviewNumber").textContent=
     "CALON NOMOR URUT "+selected;
+
+  // Tampilkan foto yang sama dengan foto pada kartu pilihan.
+  reviewPhotoError.style.display="none";
+  reviewPhoto.style.display="block";
+  reviewPhoto.alt="Foto calon kepala desa nomor urut "+selected;
+
+  // Gunakan URL foto dari kartu calon yang dipilih.
+  reviewPhoto.src=candidateImage.src;
+
+  // Jika foto gagal dimuat, tampilkan keterangan.
+  reviewPhoto.onerror=function(){
+    reviewPhoto.style.display="none";
+    reviewPhotoError.style.display="block";
+  };
+
+  reviewPhoto.onload=function(){
+    reviewPhoto.style.display="block";
+    reviewPhotoError.style.display="none";
+  };
 
   show("review");
 }
