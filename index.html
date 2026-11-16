@@ -4,659 +4,715 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123b67">
 <title>Simulasi Pilkades Digital Sumurgintung 2026</title>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-:root{
-  --blue:#123b67;
-  --blue2:#1e568b;
-  --gold:#e8b94f;
+:root {
+  --blue:#123b68;
+  --blue2:#1c568d;
+  --yellow:#f2c94c;
+  --green:#25845a;
   --bg:#f3f6fa;
-  --text:#26384c;
-  --muted:#718096;
-  --green:#21865b;
+  --text:#243247;
+  --muted:#68778a;
   --white:#fff;
+  --border:#e2e8f0;
+  --red:#b42318;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button{font-family:inherit;cursor:pointer}
 header{
-  background:linear-gradient(120deg,#102f52,#1d568b);
-  color:white;padding:20px 5%;display:flex;align-items:center;
-  justify-content:space-between;gap:18px;flex-wrap:wrap;
-  box-shadow:0 4px 18px #102f5225;
+  background:var(--blue);
+  color:white;
+  padding:13px 20px;
+  box-shadow:0 3px 12px #0002;
 }
-.brand{display:flex;align-items:center;gap:14px}
-.logo{
-  width:58px;height:58px;border-radius:16px;background:var(--gold);
-  color:var(--blue);display:grid;place-items:center;font-weight:900;
-  font-size:24px;border:2px solid #fff;box-shadow:0 4px 12px #0002;
-}
-header p{font-size:13px;margin:0;color:#dce8f5}
-nav{display:flex;gap:9px;flex-wrap:wrap}
-button{
-  border:0;border-radius:10px;padding:14px 20px;font-size:14px;
-  font-weight:bold;cursor:pointer;transition:.2s;
-}
-button:active{transform:scale(.98)}
-button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-button:disabled{opacity:.5;cursor:not-allowed}
-.navbtn{background:#ffffff17;color:white;border:1px solid #ffffff55}
-.navbtn:hover{background:#ffffff30}
-main{max-width:1080px;margin:35px auto;padding:0 20px}
-.panel{
-  background:white;border:1px solid #e8edf3;border-radius:20px;
-  padding:32px;box-shadow:0 8px 28px #18395c0b;margin-bottom:22px;
-}
-.center{text-align:center}
-.eyebrow{
-  color:#a57a20;font-weight:bold;font-size:12px;letter-spacing:2px;
-  text-transform:uppercase;
-}
-h2{color:var(--blue);font-size:28px;line-height:1.3;margin:12px 0}
-h3{color:var(--blue)}
-.muted{color:var(--muted);line-height:1.7}
-.primary{background:var(--blue);color:white}
-.primary:hover{background:var(--blue2)}
-.secondary{background:#eaf0f7;color:var(--blue)}
-.secondary:hover{background:#dce7f3}
-.gold{background:var(--gold);color:#27364a}
-.notice{
-  background:#fff8e9;border:1px solid #f3dfad;border-left:5px solid var(--gold);
-  padding:16px;border-radius:10px;font-size:13px;line-height:1.7;
-  margin:20px 0;text-align:left;
-}
-.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
-.actions button{min-width:155px}
-.step{display:none}
-.step.active{display:block}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
-.flow-item{background:#f5f8fc;border:1px solid #e5ebf2;border-radius:14px;padding:20px 12px}
-.flow-number{
-  width:38px;height:38px;margin:0 auto 12px;border-radius:50%;
-  display:grid;place-items:center;background:var(--blue);color:white;font-weight:bold;
-}
-.flow-item p{font-size:13px;line-height:1.5;color:#52647a;margin:0}
-
-/* HEADER TAHAP 02 */
-.vote-brand{
-  display:grid;
-  grid-template-columns:1fr 2fr 1fr;
-  align-items:center;
-  justify-items:center;
-  gap:18px;
-  padding:25px 20px;
-  margin-bottom:28px;
-  background:linear-gradient(135deg,#f5f9fd,#eaf1f8);
-  border:1px solid #dce7f2;
-  border-radius:16px;
-}
-.logo-container{
+.header-inner{
+  max-width:1100px;
+  margin:auto;
   display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  width:100%;
+  justify-content:space-between;
+  gap:15px;
 }
-.vote-logo{
-  width:145px;
-  height:145px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand img{
+  width:48px;height:48px;
   object-fit:contain;
-  display:block;
+  background:white;
+  border-radius:10px;
+  padding:4px;
 }
-.committee-title{
-  width:100%;
-  text-align:center;
-  color:var(--blue);
-  line-height:1.3;
+.brand-name{font-weight:bold;font-size:15px;line-height:1.4}
+.brand-sub{font-size:11px;color:#dbeafe}
+nav{display:flex;gap:8px}
+nav button{
+  background:transparent;color:white;border:1px solid #ffffff55;
+  padding:9px 13px;border-radius:8px;font-weight:bold;
+}
+nav button:hover{background:#ffffff20}
+main{
+  max-width:1050px;
+  margin:28px auto;
+  padding:0 16px 40px;
+}
+.page{display:none}
+.page.active{display:block}
+.panel{
+  background:white;
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 5px 22px #14243a0c;
+  border:1px solid var(--border);
+}
+.hero{
+  background:linear-gradient(135deg,#123b68,#1e6096);
+  color:white;
+  border-radius:18px;
+  padding:35px 28px;
   display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:7px;
+  justify-content:space-between;
+  gap:25px;
+  overflow:hidden;
 }
-.committee-title .main-title{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:1px;
-  color:var(--blue);
-  white-space:nowrap;
-  margin:0;
-}
-.committee-title .village-title{
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:1.2px;
-  margin:0;
-}
-.committee-title .year-title{
-  font-size:18px;
+.hero h1{font-size:34px;margin:0 0 12px}
+.hero p{line-height:1.7;color:#e5effa;max-width:600px}
+.hero img{width:150px;max-height:170px;object-fit:contain}
+.eyebrow{
+  color:var(--yellow);
+  font-size:12px;
   font-weight:bold;
   letter-spacing:2px;
-  margin:0;
-  color:#a57a20;
 }
-.vote-mascot{
-  width:190px;
-  height:210px;
-  object-fit:contain;
-  object-position:center;
-  display:block;
+.btn{
+  border:0;border-radius:9px;padding:12px 18px;
+  font-size:14px;font-weight:bold;
+  transition:.2s;
 }
-
-.candidates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:28px 0}
+.btn-primary{background:var(--blue2);color:white}
+.btn-primary:hover{background:var(--blue)}
+.btn-yellow{background:var(--yellow);color:#27364b}
+.btn-green{background:var(--green);color:white}
+.btn-outline{
+  border:1px solid #cbd5e1;background:white;color:var(--blue);
+}
+.btn-danger{background:#fff0ef;color:var(--red);border:1px solid #f5c3bf}
+.btn-block{width:100%}
+.notice{
+  background:#fff8df;border:1px solid #f3df9b;
+  color:#755b12;border-radius:10px;padding:13px 15px;
+  font-size:13px;line-height:1.6;margin:18px 0;
+}
+.section-title{text-align:center;margin:0 0 8px;color:var(--blue)}
+.section-desc{text-align:center;color:var(--muted);font-size:14px;line-height:1.6}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin-top:24px;
+}
+.step{
+  border:1px solid var(--border);border-radius:12px;
+  padding:16px;text-align:center;background:#fff;
+}
+.step-number{
+  width:34px;height:34px;border-radius:50%;
+  background:#eaf1f9;color:var(--blue);
+  display:grid;place-items:center;font-weight:bold;margin:0 auto 10px;
+}
+.step strong{font-size:13px}
+.step p{font-size:12px;color:var(--muted);line-height:1.5}
+.center{text-align:center}
+.form-control{
+  width:100%;padding:13px;border:1px solid #cbd5e1;
+  border-radius:9px;font-size:15px;margin:8px 0 14px;
+}
+.form-label{font-weight:bold;font-size:13px}
+.scanner-box{
+  max-width:430px;margin:18px auto;
+  border:1px dashed #9eb2c8;border-radius:12px;padding:14px;
+}
+#reader{width:100%;overflow:hidden}
+.code-help{font-size:12px;color:var(--muted);line-height:1.6}
+.committee-title{
+  text-align:center;
+  padding:18px 8px 22px;
+  border-bottom:2px solid var(--yellow);
+  margin-bottom:20px;
+}
+.main-title{font-size:14px;font-weight:bold;letter-spacing:1px;color:var(--blue)}
+.village-title{font-size:25px;font-weight:900;color:var(--blue);margin:7px 0}
+.year-title{font-size:14px;font-weight:bold;letter-spacing:2px;color:#66758a}
+.candidates{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+  margin:22px 0;
+}
 .candidate{
-  border:2px solid #e0e7ef;border-radius:18px;overflow:hidden;
-  text-align:center;cursor:pointer;transition:.2s;background:white;
+  border:2px solid var(--border);
+  border-radius:14px;padding:22px 16px;
+  text-align:center;background:white;
+  cursor:pointer;transition:.2s;
 }
-.candidate:hover{transform:translateY(-3px);box-shadow:0 8px 22px #18395c12}
-.candidate.selected{border-color:var(--blue2);box-shadow:0 0 0 4px #1d568b20;background:#f8fbff}
-.photo{
-  height:280px;background:linear-gradient(145deg,#e8eff7,#cbd9e8);
-  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+.candidate:hover{border-color:#8aa8c8;transform:translateY(-2px)}
+.candidate.selected{border-color:var(--green);background:#f0faf5}
+.candidate-avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:#e8eef5;color:var(--blue);
+  display:grid;place-items:center;
+  font-size:32px;font-weight:bold;margin:0 auto 14px;
+  border:4px solid white;box-shadow:0 0 0 1px #dce4ed;
 }
-.photo::after{content:"";position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--gold)}
-.silhouette{width:150px;height:190px;display:block}
-.candidate-info{padding:22px}
-.number{color:#a57a20;font-weight:bold;font-size:12px;letter-spacing:1px}
-.candidate h3{margin:10px 0;font-size:23px;text-transform:uppercase}
-.candidate p{font-size:13px;color:var(--muted)}
-.candidate button{width:100%;margin-top:10px;pointer-events:none}
-.candidate.selected button{background:var(--blue);color:white}
-.candidate-hint{
-  display:block;margin-top:10px;color:var(--blue2);
+.candidate h3{margin:8px 0;color:var(--blue)}
+.candidate p{font-size:12px;color:var(--muted);margin:5px}
+.candidate-tag{
+  display:inline-block;background:#edf3fa;color:var(--blue);
+  padding:5px 10px;border-radius:20px;font-size:11px;font-weight:bold;
+}
+.review-card{
+  max-width:500px;margin:20px auto;
+  border:1px solid var(--border);border-radius:13px;
+  padding:22px;text-align:center;
+}
+.review-choice{
+  background:#f2f6fb;border-radius:10px;
+  padding:20px;margin:15px 0;
+}
+.success-icon{
+  width:65px;height:65px;border-radius:50%;
+  display:grid;place-items:center;margin:0 auto 15px;
+  background:#e6f7ed;color:var(--green);font-size:32px;font-weight:bold;
+}
+.receipt{
+  width:100%;max-width:360px;
+  margin:20px auto;
+  padding:18px;
+  border:1px dashed #9aa5b1;
+  background:white;color:#111;
+  font-family:Arial, sans-serif;
+  text-align:center;
+}
+.receipt h3{font-size:16px;margin:4px 0}
+.receipt p{font-size:11px;line-height:1.5;margin:5px 0}
+.receipt hr{border:0;border-top:1px dashed #777;margin:12px 0}
+.receipt .receipt-code{
   font-size:12px;font-weight:bold;
+  overflow-wrap:anywhere;margin:8px 0;
 }
-.review-card{background:#f2f6fb;border:1px solid #e1e9f2;border-radius:16px;padding:28px;margin:22px 0}
-.review-photo{
-  display:flex;align-items:center;justify-content:center;width:min(100%,280px);
-  height:300px;margin:18px auto;border-radius:12px;
-  background:linear-gradient(145deg,#e8eff7,#cbd9e8);border:1px solid #dce7f2;
+#receiptQr{
+  display:flex;justify-content:center;
+  margin:14px auto;
+  min-height:130px;
 }
-.review-photo .silhouette{width:160px;height:205px}
-.review-number{color:#a57a20;font-weight:bold;font-size:14px}
-#reviewName{text-transform:uppercase}
-#review .actions button.review-change{
-  background-color:#dc3545!important;color:#fff!important;border:2px solid #dc3545!important;
+#receiptQr img,#receiptQr canvas{
+  margin:auto;
 }
-#review .actions button.review-change:hover{background-color:#b92736!important;border-color:#b92736!important}
-#review .actions button.review-confirm{
-  background-color:#123b67!important;color:#fff!important;border:2px solid #123b67!important;
+.receipt-foot{font-size:10px!important;color:#333}
+.dashboard-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;margin:20px 0;
 }
-#review .actions button.review-confirm:hover{background-color:#1e568b!important;border-color:#1e568b!important}
-.scanner-box{max-width:480px;margin:22px auto;padding:14px;background:#f4f7fb;border:1px solid #dce7f2;border-radius:16px}
-#qr-reader{width:100%;overflow:hidden;border-radius:12px;background:#e8eef5}
-#qr-reader video{border-radius:10px}
-.scan-status{min-height:24px;font-size:13px;line-height:1.6;margin:12px 0;color:var(--muted)}
-.scan-status.error{color:#c0392b}
-.scan-status.success{color:var(--green)}
-.scan-help{font-size:12px;color:var(--muted);line-height:1.6}
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:22px 0}
-.stat{background:#f1f5f9;border:1px solid #e4ebf3;border-radius:15px;padding:23px 15px;text-align:center}
-.stat strong{display:block;color:var(--blue);font-size:32px;margin-bottom:8px}
-.stat span{font-size:12px;color:#64748b}
-.resultrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid #e7edf3}
-.bar{height:12px;background:#e5eaf0;border-radius:20px;overflow:hidden;margin:9px 0 18px}
-.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue2));width:0;transition:width .4s}
+.stat{
+  background:#f5f8fc;border:1px solid var(--border);
+  border-radius:12px;padding:18px;text-align:center;
+}
+.stat strong{display:block;font-size:27px;color:var(--blue);margin-top:6px}
+.stat span{font-size:12px;color:var(--muted)}
+.bar-wrap{margin:16px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
+.bar-bg{height:13px;border-radius:20px;background:#e8edf3;overflow:hidden}
+.bar-fill{height:100%;background:var(--blue2);border-radius:20px;width:0}
+.admin-note{font-size:12px;color:var(--muted);line-height:1.6}
+footer{
+  text-align:center;color:#7b8796;font-size:11px;
+  padding:20px 12px 30px;
+}
 .hidden{display:none!important}
-footer{text-align:center;padding:28px 15px;color:#8290a0;font-size:12px;line-height:1.8;border-top:1px solid #e5ebf2;margin-top:30px}
-
-@media(max-width:700px){
-  header{padding:17px}
-  main{margin:20px auto;padding:0 13px}
-  .panel{padding:24px 17px}
-  h2{font-size:23px}
-  .flow{grid-template-columns:repeat(2,1fr)}
+@media(max-width:650px){
+  .header-inner{align-items:flex-start;flex-direction:column}
+  nav{width:100%}
+  nav button{flex:1}
+  main{margin:18px auto}
+  .hero{padding:25px 20px}
+  .hero h1{font-size:27px}
+  .hero img{width:90px}
+  .steps{grid-template-columns:repeat(2,1fr)}
   .candidates{grid-template-columns:1fr}
-  .photo{height:280px}
-  .statgrid{grid-template-columns:1fr}
-  button{padding:15px 17px}
-
-  .vote-brand{
-    grid-template-columns:1fr 1fr;
-    gap:12px 8px;
-    padding:20px 10px;
-  }
-  .logo-container{grid-column:1;grid-row:1}
-  .committee-title{
-    grid-column:1/-1;
-    grid-row:2;
-    gap:6px;
-  }
-  .vote-mascot{
-    grid-column:2;
-    grid-row:1;
-    width:125px;
-    height:155px;
-  }
-  .vote-logo{width:105px;height:105px}
-  .committee-title .main-title{font-size:15px;white-space:normal}
-  .committee-title .village-title{font-size:19px}
-  .committee-title .year-title{font-size:15px}
+  .dashboard-grid{grid-template-columns:1fr}
+  .panel{padding:18px}
+  .village-title{font-size:22px}
 }
-@media(max-width:380px){
-  .vote-logo{width:88px;height:88px}
-  .vote-mascot{width:110px;height:140px}
-  .committee-title .main-title{font-size:13px}
-  .committee-title .village-title{font-size:17px}
-  .committee-title .year-title{font-size:14px}
+@media print{
+  @page{size:80mm auto;margin:3mm}
+  body{background:white!important;margin:0!important;padding:0!important}
+  body *{visibility:hidden!important}
+  #receiptPrint,#receiptPrint *{visibility:visible!important}
+  #receiptPrint{
+    display:block!important;
+    position:absolute!important;left:0!important;top:0!important;
+    width:74mm!important;max-width:74mm!important;
+    margin:0!important;padding:2mm!important;
+    border:0!important;box-shadow:none!important;
+  }
+  #receiptPrint .no-print{display:none!important}
+  #receiptPrint img{max-width:42mm!important}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="brand">
-    <div class="logo">P</div>
-    <div><p>Simulasi Pemungutan Suara Digital</p></div>
+  <div class="header-inner">
+    <div class="brand">
+      <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/1%20%281%29.png" alt="Logo Desa Sumurgintung">
+      <div>
+        <div class="brand-name">PILKADES DIGITAL</div>
+        <div class="brand-sub">DESA SUMURGINTUNG • 2026</div>
+      </div>
+    </div>
+    <nav>
+      <button onclick="home()">Beranda</button>
+      <button onclick="showAdmin()">Dashboard</button>
+    </nav>
   </div>
-  <nav>
-    <button class="navbtn" onclick="home()">Beranda</button>
-    <button class="navbtn" onclick="showAdmin()">Dashboard</button>
-  </nav>
 </header>
 
 <main>
-<section id="home" class="step active">
-  <div class="panel center">
-    <div class="eyebrow">Pemerintah Desa Sumurgintung</div>
-    <h2>PESTA DEMOKRASI</h2>
-    <p class="muted">Mari mengenal tata cara pemungutan suara digital melalui simulasi yang mudah, cepat, dan sederhana.</p>
-    <div class="notice">
-      <strong>PERHATIAN</strong><br>
-      Ini hanya aplikasi simulasi untuk edukasi warga. Bukan sistem pemungutan suara resmi dan tidak menghasilkan suara sah dalam Pilkades.
+
+<!-- BERANDA -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">SIMULASI PEMILIHAN KEPALA DESA</div>
+      <h1>PESTA DEMOKRASI</h1>
+      <p>
+        Selamat datang di simulasi sistem pemungutan suara digital
+        Desa Sumurgintung Tahun 2026. Kenali alur pemilihan dan
+        coba pengalaman memberikan suara melalui sistem digital.
+      </p>
+      <button class="btn btn-yellow" onclick="showLogin()">MULAI SIMULASI</button>
     </div>
-    <button class="primary" onclick="showLogin()">MULAI SIMULASI</button>
+    <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/Maskot.png" alt="Maskot">
   </div>
-  <div class="panel center">
-    <div class="eyebrow">Empat Tahapan</div>
-    <h3>Alur Simulasi</h3>
-    <div class="flow">
-      <div class="flow-item"><div class="flow-number">01</div><p>Scan QR Code undangan</p></div>
-      <div class="flow-item"><div class="flow-number">02</div><p>Pilih calon kepala desa</p></div>
-      <div class="flow-item"><div class="flow-number">03</div><p>Periksa dan konfirmasi pilihan</p></div>
-      <div class="flow-item"><div class="flow-number">04</div><p>Simulasi selesai</p></div>
+
+  <div class="notice">
+    <strong>PERHATIAN:</strong> Aplikasi ini hanya untuk bahan simulasi dan edukasi.
+    Seluruh data, kode pemilih, dan hasil yang tampil merupakan data contoh.
+    Aplikasi ini bukan sistem pemungutan suara resmi.
+  </div>
+
+  <div class="panel">
+    <h2 class="section-title">ALUR SIMULASI PEMILIHAN</h2>
+    <p class="section-desc">Ikuti empat tahapan sederhana berikut.</p>
+    <div class="steps">
+      <div class="step"><div class="step-number">1</div><strong>Verifikasi</strong><p>Masukkan kode simulasi atau pindai QR undangan.</p></div>
+      <div class="step"><div class="step-number">2</div><strong>Pilih Calon</strong><p>Pilih salah satu calon pada layar perangkat.</p></div>
+      <div class="step"><div class="step-number">3</div><strong>Konfirmasi</strong><p>Periksa kembali pilihan sebelum dikonfirmasi.</p></div>
+      <div class="step"><div class="step-number">4</div><strong>Bukti Simulasi</strong><p>Dapatkan bukti partisipasi dengan QR Code.</p></div>
     </div>
   </div>
 </section>
 
-<section id="login" class="step">
+<!-- LOGIN -->
+<section id="login" class="page">
   <div class="panel center">
-    <div class="eyebrow">Tahap 01</div>
-    <h2>Verifikasi Undangan</h2>
-    <p class="muted">Silakan scan QR Code yang terdapat pada undangan simulasi Anda.</p>
+    <h2 class="section-title">VERIFIKASI PEMILIH</h2>
+    <p class="section-desc">Masukkan kode simulasi atau pindai QR Code contoh.</p>
+
+    <div style="max-width:430px;margin:25px auto;text-align:left">
+      <label class="form-label" for="voterCode">Kode Simulasi</label>
+      <input id="voterCode" class="form-control" placeholder="Contoh: SMG-001" autocomplete="off">
+      <button class="btn btn-primary btn-block" onclick="verifyCode()">VERIFIKASI KODE</button>
+      <div class="code-help">Kode contoh tersedia: SMG-001 sampai SMG-005.</div>
+    </div>
+
     <div class="scanner-box">
-      <div id="qr-reader"></div>
-      <p id="scanStatus" class="scan-status">Kamera belum diaktifkan.</p>
-      <button id="startScanButton" class="primary" onclick="startScanner()">SCAN QR CODE</button>
-      <button id="stopScanButton" class="secondary hidden" onclick="stopScanner()">MATIKAN KAMERA</button>
+      <strong>Pindai QR Code</strong>
+      <p class="code-help">Izinkan akses kamera jika ingin mencoba pemindaian QR.</p>
+      <div id="reader"></div>
+      <button id="scanButton" class="btn btn-outline btn-block" onclick="startScanner()">AKTIFKAN KAMERA</button>
+      <button id="stopScanButton" class="btn btn-outline btn-block hidden" onclick="stopScanner()">MATIKAN KAMERA</button>
     </div>
-    <p class="scan-help">Izinkan akses kamera pada browser. Arahkan kamera ke QR Code sampai kode berhasil terbaca.</p>
-    <div class="notice">
-      <strong>QR CODE UNTUK UJI COBA</strong><br>
-      Sistem simulasi menerima QR dengan isi:<br>
-      <strong>SMG-001, SMG-002, SMG-003, SMG-004, SMG-005</strong><br>
-      QR harus berisi teks kode tersebut, bukan hanya menampilkan tulisan di gambar.
-    </div>
-    <p id="loginError" style="color:#c0392b"></p>
-    <div class="actions"><button class="secondary" onclick="home()">KEMBALI</button></div>
+    <button class="btn btn-outline" onclick="home()">KEMBALI</button>
+    <p id="loginMessage" style="color:#b42318;font-size:13px"></p>
   </div>
 </section>
 
-<section id="vote" class="step">
-  <div class="panel center">
-    <div class="vote-brand">
-      <div class="logo-container">
-        <img class="vote-logo" src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/1%20%281%29.png" alt="Logo Panitia Pilkades Sumurgintung">
-      </div>
-
-      <div class="committee-title">
-        <div class="main-title">PANITIA PEMILIHAN KEPALA DESA</div>
-        <div class="village-title">DESA SUMURGINTUNG</div>
-        <div class="year-title">TAHUN 2026</div>
-      </div>
-
-      <img class="vote-mascot" src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/Maskot.png" alt="Maskot Pilkades Sumurgintung">
+<!-- PILIH CALON -->
+<section id="vote" class="page">
+  <div class="panel">
+    <div class="committee-title">
+      <div class="main-title">PANITIA PEMILIHAN KEPALA DESA</div>
+      <div class="village-title">DESA SUMURGINTUNG</div>
+      <div class="year-title">TAHUN 2026</div>
     </div>
-
-    <div class="eyebrow">Tahap 02</div>
-    <h2>Silakan Pilih Calon Kepala Desa</h2>
-    <p class="muted">Sentuh gambar atau kartu calon. Anda akan langsung diarahkan ke tahap konfirmasi.</p>
+    <h2 class="section-title">PILIH CALON KEPALA DESA</h2>
+    <p class="section-desc">Silakan pilih salah satu calon berikut.</p>
 
     <div class="candidates">
-      <div class="candidate" id="candidate1" onclick="selectCandidate(1)" role="button" tabindex="0" aria-label="Pilih calon nomor urut 1, Calon A">
-        <div class="photo">
-          <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon">
-            <circle cx="80" cy="52" r="35" fill="#718096"/>
-            <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
-          </svg>
-        </div>
-        <div class="candidate-info">
-          <div class="number">CALON NOMOR URUT 1</div>
-          <h3>CALON A</h3>
-          <p>Calon Kepala Desa</p>
-          <button class="secondary" tabindex="-1">PILIH NOMOR 1</button>
-          <span class="candidate-hint">Sentuh untuk memilih</span>
-        </div>
+      <div class="candidate" id="candidate1" onclick="selectCandidate(1)">
+        <div class="candidate-avatar">A</div>
+        <span class="candidate-tag">NOMOR URUT 1</span>
+        <h3>CALON A</h3>
+        <p>Calon Kepala Desa</p>
       </div>
-
-      <div class="candidate" id="candidate2" onclick="selectCandidate(2)" role="button" tabindex="0" aria-label="Pilih calon nomor urut 2, Calon B">
-        <div class="photo">
-          <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon">
-            <circle cx="80" cy="52" r="35" fill="#718096"/>
-            <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
-          </svg>
-        </div>
-        <div class="candidate-info">
-          <div class="number">CALON NOMOR URUT 2</div>
-          <h3>CALON B</h3>
-          <p>Calon Kepala Desa</p>
-          <button class="secondary" tabindex="-1">PILIH NOMOR 2</button>
-          <span class="candidate-hint">Sentuh untuk memilih</span>
-        </div>
+      <div class="candidate" id="candidate2" onclick="selectCandidate(2)">
+        <div class="candidate-avatar">B</div>
+        <span class="candidate-tag">NOMOR URUT 2</span>
+        <h3>CALON B</h3>
+        <p>Calon Kepala Desa</p>
       </div>
     </div>
-    <p id="voteError" style="color:#c0392b"></p>
-    <p class="scan-help">Pilihan akan ditampilkan kembali agar dapat diperiksa sebelum dikonfirmasi.</p>
+
+    <div class="notice">
+      Pastikan pilihan sudah sesuai sebelum melanjutkan ke tahap konfirmasi.
+    </div>
+    <button class="btn btn-outline" onclick="home()">KEMBALI KE BERANDA</button>
   </div>
 </section>
 
-<section id="review" class="step">
+<!-- REVIEW -->
+<section id="review" class="page">
   <div class="panel center">
-    <div class="eyebrow">Tahap 03</div>
-    <h2>Konfirmasi Pilihan</h2>
-    <p class="muted">Pastikan pilihan simulasi Anda sudah benar.</p>
+    <h2 class="section-title">KONFIRMASI PILIHAN</h2>
+    <p class="section-desc">Periksa kembali calon yang telah dipilih.</p>
     <div class="review-card">
-      <div class="eyebrow">Pilihan Anda</div>
-      <div class="review-photo">
-        <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon yang dipilih">
-          <circle cx="80" cy="52" r="35" fill="#718096"/>
-          <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
-        </svg>
+      <div class="review-choice">
+        <div style="font-size:12px;color:#68778a">PILIHAN ANDA</div>
+        <h2 id="reviewNumber" style="color:#123b68;margin:10px 0"></h2>
+        <h3 id="reviewCandidate" style="margin:0"></h3>
       </div>
-      <h2 id="reviewName">-</h2>
-      <p id="reviewNumber" class="review-number"></p>
-    </div>
-    <div class="notice">
-      Setelah menekan tombol konfirmasi, simulasi dianggap selesai dan QR undangan tidak dapat digunakan kembali pada browser ini.
-    </div>
-    <div class="actions">
-      <button type="button" class="review-change" onclick="showVote()">UBAH PILIHAN</button>
-      <button type="button" class="review-confirm" onclick="confirmVote()">KONFIRMASI</button>
+      <p style="font-size:13px;color:#68778a">Apakah Anda yakin dengan pilihan tersebut?</p>
+      <button class="btn btn-outline" onclick="changeChoice()">UBAH PILIHAN</button>
+      <button class="btn btn-green" onclick="confirmVote()">KONFIRMASI PILIHAN</button>
     </div>
   </div>
 </section>
 
-<section id="success" class="step">
+<!-- SUKSES DAN BUKTI -->
+<section id="success" class="page">
   <div class="panel center">
-    <div style="font-size:65px;color:var(--green)">✓</div>
-    <div class="eyebrow">Simulasi Berhasil</div>
-    <h2>Terima Kasih!</h2>
-    <p class="muted">Anda telah menyelesaikan seluruh tahapan simulasi pemungutan suara digital Pilkades Sumurgintung 2026.</p>
-    <div class="notice">
-      <strong>SIMULASI SELESAI</strong><br>
-      QR undangan telah ditandai sebagai telah digunakan pada browser/perangkat ini.
+    <div class="success-icon">✓</div>
+    <h2 class="section-title">SIMULASI BERHASIL</h2>
+    <p class="section-desc">
+      Terima kasih. Proses simulasi pemilihan telah selesai.
+      Berikut bukti partisipasi simulasi Anda.
+    </p>
+
+    <div id="receiptPrint" class="receipt">
+      <h3>PANITIA PILKADES</h3>
+      <h3>DESA SUMURGINTUNG</h3>
+      <p>TAHUN 2026</p>
+      <hr>
+      <h3>BUKTI PARTISIPASI</h3>
+      <p>SIMULASI PILKADES DIGITAL</p>
+      <hr>
+      <p>Status:</p>
+      <strong>SIMULASI BERHASIL</strong>
+      <p id="receiptDate"></p>
+      <p id="receiptTime"></p>
+      <hr>
+      <p>Kode bukti simulasi:</p>
+      <div class="receipt-code" id="receiptCode">-</div>
+      <div id="receiptQr"></div>
+      <p class="receipt-foot">Pindai QR Code untuk memeriksa kode bukti simulasi.</p>
+      <hr>
+      <p class="receipt-foot">
+        DOKUMEN INI HANYA BUKTI PARTISIPASI SIMULASI.
+        BUKAN BUKTI SUARA PEMILIHAN RESMI.
+      </p>
+      <p class="receipt-foot">Terima kasih atas partisipasi Anda.</p>
     </div>
-    <button class="primary" onclick="home()">KEMBALI KE BERANDA</button>
+
+    <div class="no-print" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="printReceipt()">CETAK BUKTI</button>
+      <button class="btn btn-outline" onclick="home()">KEMBALI KE BERANDA</button>
+    </div>
+    <p id="printMessage" class="admin-note no-print">
+      Untuk mencetak, pilih printer thermal yang sudah terhubung pada dialog cetak browser.
+    </p>
   </div>
 </section>
 
-<section id="admin" class="step">
+<!-- DASHBOARD -->
+<section id="admin" class="page">
   <div class="panel">
-    <div class="eyebrow">Panel Monitoring</div>
-    <h2>Dashboard Hasil Simulasi</h2>
-    <p class="muted">Data percobaan yang tersimpan pada browser ini saja.</p>
-    <div class="statgrid">
-      <div class="stat"><strong id="totalVotes">0</strong><span>Total simulasi selesai</span></div>
-      <div class="stat"><strong id="votes1">0</strong><span>Calon nomor 1</span></div>
-      <div class="stat"><strong id="votes2">0</strong><span>Calon nomor 2</span></div>
-    </div>
-    <h3>Rekapitulasi Pilihan Simulasi</h3>
-    <div class="resultrow"><strong>Nomor 1 — CALON A</strong><strong id="count1">0</strong></div>
-    <div class="bar"><div class="fill" id="bar1"></div></div>
-    <div class="resultrow"><strong>Nomor 2 — CALON B</strong><strong id="count2">0</strong></div>
-    <div class="bar"><div class="fill" id="bar2"></div></div>
+    <h2 class="section-title">DASHBOARD SIMULASI</h2>
+    <p class="section-desc">Ringkasan data simulasi pada browser/perangkat ini.</p>
+
     <div class="notice">
-      Dashboard ini hanya untuk demonstrasi. Data disimpan secara lokal pada perangkat dan bukan rekapitulasi resmi. Data tidak tersinkronisasi dengan perangkat lain.
+      Data dashboard tersimpan secara lokal pada browser ini.
+      Data tidak tersinkronisasi dengan perangkat lain dan dapat diubah melalui browser.
     </div>
-    <div class="actions">
-      <button class="secondary" onclick="home()">KEMBALI</button>
-      <button class="gold" onclick="resetDemo()">RESET DATA DEMO</button>
+
+    <div class="dashboard-grid">
+      <div class="stat"><span>Total Partisipasi</span><strong id="totalVotes">0</strong></div>
+      <div class="stat"><span>Calon A</span><strong id="countA">0</strong></div>
+      <div class="stat"><span>Calon B</span><strong id="countB">0</strong></div>
+    </div>
+
+    <h3>Rekapitulasi Simulasi</h3>
+    <div class="bar-wrap">
+      <div class="bar-label"><strong>CALON A</strong><span id="percentA">0%</span></div>
+      <div class="bar-bg"><div class="bar-fill" id="barA"></div></div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-label"><strong>CALON B</strong><span id="percentB">0%</span></div>
+      <div class="bar-bg"><div class="bar-fill" id="barB"></div></div>
+    </div>
+
+    <p class="admin-note">
+      Dashboard ini hanya menampilkan data simulasi lokal, bukan hasil pemilihan resmi.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+      <button class="btn btn-outline" onclick="home()">KEMBALI</button>
+      <button class="btn btn-danger" onclick="resetDemo()">RESET DATA SIMULASI</button>
     </div>
   </div>
 </section>
+
 </main>
 
 <footer>
-  <strong>PANITIA PILKADES SUMURGINTUNG TAHUN 2026</strong><br>
-  APLIKASI SIMULASI — BUKAN SISTEM PEMUNGUTAN SUARA RESMI
+  PANITIA PEMILIHAN KEPALA DESA SUMURGINTUNG • TAHUN 2026
+  <br>APLIKASI INI HANYA UNTUK KEPERLUAN SIMULASI DAN EDUKASI
 </footer>
 
 <script>
-const demoCodes=["SMG-001","SMG-002","SMG-003","SMG-004","SMG-005"];
+const demoCodes = ["SMG-001","SMG-002","SMG-003","SMG-004","SMG-005"];
 
-let selected=0;
-let currentCode="";
-let qrScanner=null;
-let scannerRunning=false;
-let selectionLocked=false;
+let currentCode = "";
+let selected = 0;
+let html5QrCode = null;
+let currentReceiptId = "";
 
 function getUsed(){
-  return JSON.parse(localStorage.getItem("smg_used")||"[]");
+  try{return JSON.parse(localStorage.getItem("smg_used") || "[]")}
+  catch(e){return []}
 }
 function getVotes(){
-  return JSON.parse(localStorage.getItem("smg_votes")||"[]");
+  try{return JSON.parse(localStorage.getItem("smg_votes") || "[]")}
+  catch(e){return []}
 }
 function show(id){
-  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  window.scrollTo(0,0);
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 function home(){
   stopScanner();
-  selectionLocked=false;
-  selected=0;
-  currentCode="";
   show("home");
 }
 function showLogin(){
-  stopScanner();
-  document.getElementById("loginError").textContent="";
-  document.getElementById("scanStatus").textContent="Kamera belum diaktifkan.";
-  document.getElementById("scanStatus").className="scan-status";
-  document.getElementById("startScanButton").classList.remove("hidden");
-  document.getElementById("stopScanButton").classList.add("hidden");
+  currentCode="";
+  document.getElementById("voterCode").value="";
+  document.getElementById("loginMessage").textContent="";
   show("login");
 }
-async function startScanner(){
-  const status=document.getElementById("scanStatus");
-  const startButton=document.getElementById("startScanButton");
-  const stopButton=document.getElementById("stopScanButton");
+function verifyCode(){
+  const code=document.getElementById("voterCode").value.trim().toUpperCase();
+  verifyScannedCode(code);
+}
+function verifyScannedCode(code){
+  const message=document.getElementById("loginMessage");
+  const used=getUsed();
 
-  if(!window.Html5Qrcode){
-    status.textContent="Pustaka scanner tidak berhasil dimuat. Periksa koneksi internet lalu muat ulang halaman.";
-    status.className="scan-status error";
+  if(!demoCodes.includes(code)){
+    message.textContent="Kode simulasi tidak ditemukan. Silakan periksa kembali.";
     return;
   }
-  if(scannerRunning)return;
+  if(used.includes(code)){
+    message.textContent="Kode simulasi ini sudah pernah digunakan.";
+    return;
+  }
 
-  startButton.disabled=true;
-  status.textContent="Meminta izin kamera...";
-  status.className="scan-status";
+  currentCode=code;
+  selected=0;
+  stopScanner();
+  showVote();
+}
+function showVote(){
+  document.getElementById("candidate1").classList.remove("selected");
+  document.getElementById("candidate2").classList.remove("selected");
+  show("vote");
+}
+function selectCandidate(number){
+  selected=number;
+  document.getElementById("candidate1").classList.toggle("selected",number===1);
+  document.getElementById("candidate2").classList.toggle("selected",number===2);
+
+  document.getElementById("reviewNumber").textContent="NOMOR URUT "+number;
+  document.getElementById("reviewCandidate").textContent=number===1?"CALON A":"CALON B";
+  show("review");
+}
+function changeChoice(){
+  selected=0;
+  showVote();
+}
+function makeReceiptId(){
+  const bytes=new Uint8Array(16);
+  if(window.crypto && window.crypto.getRandomValues){
+    window.crypto.getRandomValues(bytes);
+    return Array.from(bytes).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+  }
+  return Date.now().toString(16).toUpperCase()+Math.random().toString(16).slice(2,12).toUpperCase();
+}
+function confirmVote(){
+  if(!currentCode || !selected){
+    alert("Data simulasi tidak lengkap. Silakan ulangi proses.");
+    return;
+  }
+
+  const votes=getVotes();
+  const used=getUsed();
+
+  if(used.includes(currentCode)){
+    alert("Kode simulasi ini sudah digunakan.");
+    home();
+    return;
+  }
+
+  const receiptId=makeReceiptId();
+  const now=new Date();
+
+  // Data ini hanya tersimpan lokal untuk keperluan demonstrasi.
+  votes.push({
+    candidate:selected,
+    receiptId:receiptId,
+    date:now.toISOString()
+  });
+  used.push(currentCode);
 
   try{
-    qrScanner=new Html5Qrcode("qr-reader");
-    await qrScanner.start(
+    localStorage.setItem("smg_votes",JSON.stringify(votes));
+    localStorage.setItem("smg_used",JSON.stringify(used));
+  }catch(e){
+    alert("Penyimpanan browser gagal. Periksa ruang penyimpanan perangkat.");
+    return;
+  }
+
+  currentReceiptId=receiptId;
+  currentCode="";
+  selected=0;
+
+  renderReceipt(receiptId,now);
+  show("success");
+}
+function renderReceipt(receiptId,date){
+  document.getElementById("receiptCode").textContent=receiptId;
+  document.getElementById("receiptDate").textContent=
+    "Tanggal: "+date.toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"});
+  document.getElementById("receiptTime").textContent=
+    "Waktu: "+date.toLocaleTimeString("id-ID");
+
+  const qr=document.getElementById("receiptQr");
+  qr.innerHTML="";
+
+  // QR hanya berisi token acak bukti simulasi, bukan identitas atau pilihan calon.
+  const payload="BUKTI-SIMULASI|"+receiptId;
+
+  if(typeof QRCode!=="undefined"){
+    new QRCode(qr,{
+      text:payload,
+      width:132,
+      height:132,
+      correctLevel:QRCode.CorrectLevel.M
+    });
+  }else{
+    qr.innerHTML="<p style='font-size:10px'>QR Code tidak dapat dimuat. Periksa koneksi internet.</p>";
+  }
+}
+function printReceipt(){
+  if(!currentReceiptId){
+    alert("Bukti simulasi belum tersedia.");
+    return;
+  }
+  window.print();
+}
+function showAdmin(){
+  updateDashboard();
+  show("admin");
+}
+function updateDashboard(){
+  const votes=getVotes();
+  const a=votes.filter(v=>Number(v.candidate)===1).length;
+  const b=votes.filter(v=>Number(v.candidate)===2).length;
+  const total=a+b;
+  const pa=total?Math.round(a/total*100):0;
+  const pb=total?Math.round(b/total*100):0;
+
+  document.getElementById("totalVotes").textContent=total;
+  document.getElementById("countA").textContent=a;
+  document.getElementById("countB").textContent=b;
+  document.getElementById("percentA").textContent=pa+"%";
+  document.getElementById("percentB").textContent=pb+"%";
+  document.getElementById("barA").style.width=pa+"%";
+  document.getElementById("barB").style.width=pb+"%";
+}
+function resetDemo(){
+  const ok=confirm("Yakin ingin menghapus seluruh data simulasi pada browser ini?");
+  if(!ok)return;
+  localStorage.removeItem("smg_votes");
+  localStorage.removeItem("smg_used");
+  currentCode="";
+  selected=0;
+  currentReceiptId="";
+  updateDashboard();
+  alert("Data simulasi pada browser ini telah direset.");
+}
+async function startScanner(){
+  const message=document.getElementById("loginMessage");
+  if(typeof Html5Qrcode==="undefined"){
+    message.textContent="Fitur pemindai tidak dapat dimuat. Periksa koneksi internet.";
+    return;
+  }
+  try{
+    html5QrCode=new Html5Qrcode("reader");
+    await html5QrCode.start(
       {facingMode:"environment"},
-      {fps:10,qrbox:{width:250,height:250},aspectRatio:1},
-      async(decodedText)=>{
-        if(!scannerRunning||!qrScanner)return;
-        scannerRunning=false;
-        status.textContent="QR Code berhasil dibaca. Memeriksa undangan...";
-        status.className="scan-status success";
-        try{await qrScanner.stop()}catch(e){}
-        try{await qrScanner.clear()}catch(e){}
-        qrScanner=null;
-        stopButton.classList.add("hidden");
-        startButton.classList.remove("hidden");
-        startButton.disabled=false;
-        verifyScannedCode(decodedText);
+      {fps:10,qrbox:{width:230,height:230}},
+      decodedText=>{
+        const value=decodedText.trim().toUpperCase();
+        verifyScannedCode(value);
       },
-      ()=>{}
+      errorMessage=>{}
     );
-    scannerRunning=true;
-    status.textContent="Kamera aktif. Arahkan ke QR Code undangan.";
-    status.className="scan-status";
-    startButton.classList.add("hidden");
-    stopButton.classList.remove("hidden");
-  }catch(error){
-    qrScanner=null;
-    scannerRunning=false;
-    startButton.disabled=false;
-    startButton.classList.remove("hidden");
-    stopButton.classList.add("hidden");
-    status.textContent="Kamera tidak dapat dibuka. Pastikan izin kamera diberikan dan halaman dibuka melalui HTTPS.";
-    status.className="scan-status error";
+    document.getElementById("scanButton").classList.add("hidden");
+    document.getElementById("stopScanButton").classList.remove("hidden");
+  }catch(e){
+    message.textContent="Kamera tidak dapat diaktifkan. Pastikan izin kamera diberikan dan gunakan HTTPS.";
+    html5QrCode=null;
   }
 }
 async function stopScanner(){
-  const startButton=document.getElementById("startScanButton");
+  if(html5QrCode){
+    try{
+      if(html5QrCode.isScanning) await html5QrCode.stop();
+      html5QrCode.clear();
+    }catch(e){}
+    html5QrCode=null;
+  }
+  const scanButton=document.getElementById("scanButton");
   const stopButton=document.getElementById("stopScanButton");
-  if(qrScanner){
-    try{if(scannerRunning)await qrScanner.stop()}catch(e){}
-    try{await qrScanner.clear()}catch(e){}
-    qrScanner=null;
-  }
-  scannerRunning=false;
-  if(startButton){
-    startButton.disabled=false;
-    startButton.classList.remove("hidden");
-  }
+  if(scanButton)scanButton.classList.remove("hidden");
   if(stopButton)stopButton.classList.add("hidden");
 }
-function verifyScannedCode(scannedText){
-  const code=String(scannedText).trim().toUpperCase();
-  const error=document.getElementById("loginError");
-  const status=document.getElementById("scanStatus");
-
-  if(!demoCodes.includes(code)){
-    error.textContent="QR Code tidak dikenal. Silakan gunakan QR Code uji coba yang terdaftar.";
-    status.textContent="QR Code tidak valid.";
-    status.className="scan-status error";
-    return;
-  }
-  if(getUsed().includes(code)){
-    error.textContent="QR Code ini sudah digunakan pada browser/perangkat ini.";
-    status.textContent="QR Code sudah pernah digunakan.";
-    status.className="scan-status error";
-    return;
-  }
-  error.textContent="";
-  status.textContent="Verifikasi berhasil. Undangan simulasi terdaftar.";
-  status.className="scan-status success";
-  currentCode=code;
-  selected=0;
-  selectionLocked=false;
-  setTimeout(()=>showVote(),700);
-}
-function showVote(){
-  selectionLocked=false;
-  selected=0;
-  document.getElementById("candidate1").classList.remove("selected");
-  document.getElementById("candidate2").classList.remove("selected");
-  document.getElementById("voteError").textContent="";
-  show("vote");
-}
-
-/* Sentuh kartu calon untuk langsung masuk ke tahap konfirmasi. */
-function selectCandidate(n){
-  if(selectionLocked)return;
-  if(n!==1&&n!==2)return;
-
-  selectionLocked=true;
-  selected=n;
-
-  document.getElementById("candidate1").classList.toggle("selected",n===1);
-  document.getElementById("candidate2").classList.toggle("selected",n===2);
-  document.getElementById("voteError").textContent="";
-
-  document.getElementById("reviewName").textContent=n===1?"CALON A":"CALON B";
-  document.getElementById("reviewNumber").textContent="CALON NOMOR URUT "+n;
-
-  setTimeout(()=>{
-    show("review");
-  },250);
-}
-function reviewVote(){
-  if(!selected){
-    document.getElementById("voteError").textContent="Silakan pilih salah satu calon terlebih dahulu.";
-    return;
-  }
-  document.getElementById("reviewName").textContent=selected===1?"CALON A":"CALON B";
-  document.getElementById("reviewNumber").textContent="CALON NOMOR URUT "+selected;
-  show("review");
-}
-function confirmVote(){
-  if(!currentCode){
-    alert("Silakan lakukan verifikasi QR Code terlebih dahulu.");
-    home();
-    return;
-  }
-  if(!selected){
-    alert("Pilihan calon belum ditentukan.");
-    showVote();
-    return;
-  }
-  const used=getUsed();
-  if(used.includes(currentCode)){
-    alert("QR Code ini sudah digunakan.");
-    home();
-    return;
-  }
-  const votes=getVotes();
-  votes.push({candidate:selected});
-  used.push(currentCode);
-  localStorage.setItem("smg_votes",JSON.stringify(votes));
-  localStorage.setItem("smg_used",JSON.stringify(used));
-  currentCode="";
-  selected=0;
-  selectionLocked=false;
-  show("success");
-}
-function showAdmin(){
-  stopScanner();
-  const votes=getVotes();
-  const a=votes.filter(v=>v.candidate===1).length;
-  const b=votes.filter(v=>v.candidate===2).length;
-  const total=a+b;
-  document.getElementById("totalVotes").textContent=total;
-  document.getElementById("votes1").textContent=a;
-  document.getElementById("votes2").textContent=b;
-  document.getElementById("count1").textContent=a;
-  document.getElementById("count2").textContent=b;
-  document.getElementById("bar1").style.width=(total?a/total*100:0)+"%";
-  document.getElementById("bar2").style.width=(total?b/total*100:0)+"%";
-  show("admin");
-}
-function resetDemo(){
-  if(confirm("Yakin ingin menghapus seluruh data simulasi pada browser ini?")){
-    localStorage.removeItem("smg_votes");
-    localStorage.removeItem("smg_used");
-    showAdmin();
-  }
-}
-
-/* Akses keyboard untuk kartu calon */
-document.querySelectorAll(".candidate").forEach((card,index)=>{
-  card.addEventListener("keydown",event=>{
-    if(event.key==="Enter"||event.key===" "){
-      event.preventDefault();
-      selectCandidate(index+1);
-    }
-  });
+document.getElementById("voterCode").addEventListener("keydown",function(e){
+  if(e.key==="Enter")verifyCode();
 });
 </script>
+
 </body>
 </html>
