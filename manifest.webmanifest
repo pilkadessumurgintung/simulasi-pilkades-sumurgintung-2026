@@ -1,0 +1,13 @@
+
+{
+  "name": "Simulasi Pilkades Sumurgintung 2026",
+  "short_name": "Simulasi Pilkades",
+  "description": "Aplikasi simulasi Pilkades Digital Desa Sumurgintung Tahun 2026",
+  "lang": "id",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0d47a1"
+}
