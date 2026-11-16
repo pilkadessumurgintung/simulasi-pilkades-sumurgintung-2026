@@ -10,7 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-:root {
+:root{
   --blue:#123b68;
   --blue2:#1c568d;
   --yellow:#f2c94c;
@@ -18,215 +18,81 @@
   --bg:#f3f6fa;
   --text:#243247;
   --muted:#68778a;
-  --white:#fff;
   --border:#e2e8f0;
   --red:#b42318;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
 button{font-family:inherit;cursor:pointer}
-header{
-  background:var(--blue);
-  color:white;
-  padding:13px 20px;
-  box-shadow:0 3px 12px #0002;
-}
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.brand img{
-  width:48px;height:48px;
-  object-fit:contain;
-  background:white;
-  border-radius:10px;
-  padding:4px;
-}
+header{background:var(--blue);color:white;padding:13px 20px;box-shadow:0 3px 12px #0002}
+.header-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:48px;height:48px;object-fit:contain;background:white;border-radius:10px;padding:4px}
 .brand-name{font-weight:bold;font-size:15px;line-height:1.4}
 .brand-sub{font-size:11px;color:#dbeafe}
 nav{display:flex;gap:8px}
-nav button{
-  background:transparent;color:white;border:1px solid #ffffff55;
-  padding:9px 13px;border-radius:8px;font-weight:bold;
-}
+nav button{background:transparent;color:white;border:1px solid #ffffff55;padding:9px 13px;border-radius:8px;font-weight:bold}
 nav button:hover{background:#ffffff20}
-main{
-  max-width:1050px;
-  margin:28px auto;
-  padding:0 16px 40px;
-}
+main{max-width:1050px;margin:28px auto;padding:0 16px 40px}
 .page{display:none}
 .page.active{display:block}
-.panel{
-  background:white;
-  border-radius:16px;
-  padding:25px;
-  box-shadow:0 5px 22px #14243a0c;
-  border:1px solid var(--border);
-}
-.hero{
-  background:linear-gradient(135deg,#123b68,#1e6096);
-  color:white;
-  border-radius:18px;
-  padding:35px 28px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
-  overflow:hidden;
-}
+.panel{background:white;border-radius:16px;padding:25px;box-shadow:0 5px 22px #14243a0c;border:1px solid var(--border)}
+.hero{background:linear-gradient(135deg,#123b68,#1e6096);color:white;border-radius:18px;padding:35px 28px;display:flex;align-items:center;justify-content:space-between;gap:25px;overflow:hidden}
 .hero h1{font-size:34px;margin:0 0 12px}
 .hero p{line-height:1.7;color:#e5effa;max-width:600px}
 .hero img{width:150px;max-height:170px;object-fit:contain}
-.eyebrow{
-  color:var(--yellow);
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-.btn{
-  border:0;border-radius:9px;padding:12px 18px;
-  font-size:14px;font-weight:bold;
-  transition:.2s;
-}
+.eyebrow{color:var(--yellow);font-size:12px;font-weight:bold;letter-spacing:2px}
+.btn{border:0;border-radius:9px;padding:12px 18px;font-size:14px;font-weight:bold;transition:.2s}
 .btn-primary{background:var(--blue2);color:white}
 .btn-primary:hover{background:var(--blue)}
 .btn-yellow{background:var(--yellow);color:#27364b}
 .btn-green{background:var(--green);color:white}
-.btn-outline{
-  border:1px solid #cbd5e1;background:white;color:var(--blue);
-}
+.btn-outline{border:1px solid #cbd5e1;background:white;color:var(--blue)}
 .btn-danger{background:#fff0ef;color:var(--red);border:1px solid #f5c3bf}
 .btn-block{width:100%}
-.notice{
-  background:#fff8df;border:1px solid #f3df9b;
-  color:#755b12;border-radius:10px;padding:13px 15px;
-  font-size:13px;line-height:1.6;margin:18px 0;
-}
+.notice{background:#fff8df;border:1px solid #f3df9b;color:#755b12;border-radius:10px;padding:13px 15px;font-size:13px;line-height:1.6;margin:18px 0}
 .section-title{text-align:center;margin:0 0 8px;color:var(--blue)}
 .section-desc{text-align:center;color:var(--muted);font-size:14px;line-height:1.6}
-.steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin-top:24px;
-}
-.step{
-  border:1px solid var(--border);border-radius:12px;
-  padding:16px;text-align:center;background:#fff;
-}
-.step-number{
-  width:34px;height:34px;border-radius:50%;
-  background:#eaf1f9;color:var(--blue);
-  display:grid;place-items:center;font-weight:bold;margin:0 auto 10px;
-}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.step{border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;background:#fff}
+.step-number{width:34px;height:34px;border-radius:50%;background:#eaf1f9;color:var(--blue);display:grid;place-items:center;font-weight:bold;margin:0 auto 10px}
 .step strong{font-size:13px}
 .step p{font-size:12px;color:var(--muted);line-height:1.5}
 .center{text-align:center}
-.form-control{
-  width:100%;padding:13px;border:1px solid #cbd5e1;
-  border-radius:9px;font-size:15px;margin:8px 0 14px;
-}
-.form-label{font-weight:bold;font-size:13px}
-.scanner-box{
-  max-width:430px;margin:18px auto;
-  border:1px dashed #9eb2c8;border-radius:12px;padding:14px;
-}
-#reader{width:100%;overflow:hidden}
-.code-help{font-size:12px;color:var(--muted);line-height:1.6}
-.committee-title{
-  text-align:center;
-  padding:18px 8px 22px;
-  border-bottom:2px solid var(--yellow);
-  margin-bottom:20px;
-}
+.scanner-box{max-width:520px;margin:22px auto 16px;border:1px solid var(--border);border-radius:14px;padding:15px;background:#f9fbfd}
+.scanner-heading{font-weight:bold;color:var(--blue);margin-bottom:8px}
+.scanner-instruction{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 14px}
+#reader{width:100%;min-height:250px;overflow:hidden;border-radius:10px;background:#e9eef4}
+#reader video{object-fit:cover;border-radius:10px}
+.camera-status{font-size:13px;line-height:1.5;margin:13px 0;color:var(--muted);min-height:20px}
+.camera-status.error{color:var(--red)}
+.camera-status.success{color:var(--green)}
+.camera-help{font-size:12px;line-height:1.6;color:var(--muted);margin:10px 0}
+.committee-title{text-align:center;padding:18px 8px 22px;border-bottom:2px solid var(--yellow);margin-bottom:20px}
 .main-title{font-size:14px;font-weight:bold;letter-spacing:1px;color:var(--blue)}
 .village-title{font-size:25px;font-weight:900;color:var(--blue);margin:7px 0}
 .year-title{font-size:14px;font-weight:bold;letter-spacing:2px;color:#66758a}
-.candidates{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
-  margin:22px 0;
-}
-.candidate{
-  border:2px solid var(--border);
-  border-radius:14px;padding:22px 16px;
-  text-align:center;background:white;
-  cursor:pointer;transition:.2s;
-}
+.candidates{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:22px 0}
+.candidate{border:2px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;background:white;cursor:pointer;transition:.2s}
 .candidate:hover{border-color:#8aa8c8;transform:translateY(-2px)}
 .candidate.selected{border-color:var(--green);background:#f0faf5}
-.candidate-avatar{
-  width:90px;height:90px;border-radius:50%;
-  background:#e8eef5;color:var(--blue);
-  display:grid;place-items:center;
-  font-size:32px;font-weight:bold;margin:0 auto 14px;
-  border:4px solid white;box-shadow:0 0 0 1px #dce4ed;
-}
+.candidate-avatar{width:90px;height:90px;border-radius:50%;background:#e8eef5;color:var(--blue);display:grid;place-items:center;font-size:32px;font-weight:bold;margin:0 auto 14px;border:4px solid white;box-shadow:0 0 0 1px #dce4ed}
 .candidate h3{margin:8px 0;color:var(--blue)}
 .candidate p{font-size:12px;color:var(--muted);margin:5px}
-.candidate-tag{
-  display:inline-block;background:#edf3fa;color:var(--blue);
-  padding:5px 10px;border-radius:20px;font-size:11px;font-weight:bold;
-}
-.review-card{
-  max-width:500px;margin:20px auto;
-  border:1px solid var(--border);border-radius:13px;
-  padding:22px;text-align:center;
-}
-.review-choice{
-  background:#f2f6fb;border-radius:10px;
-  padding:20px;margin:15px 0;
-}
-.success-icon{
-  width:65px;height:65px;border-radius:50%;
-  display:grid;place-items:center;margin:0 auto 15px;
-  background:#e6f7ed;color:var(--green);font-size:32px;font-weight:bold;
-}
-.receipt{
-  width:100%;max-width:360px;
-  margin:20px auto;
-  padding:18px;
-  border:1px dashed #9aa5b1;
-  background:white;color:#111;
-  font-family:Arial, sans-serif;
-  text-align:center;
-}
+.candidate-tag{display:inline-block;background:#edf3fa;color:var(--blue);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:bold}
+.review-card{max-width:500px;margin:20px auto;border:1px solid var(--border);border-radius:13px;padding:22px;text-align:center}
+.review-choice{background:#f2f6fb;border-radius:10px;padding:20px;margin:15px 0}
+.success-icon{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;margin:0 auto 15px;background:#e6f7ed;color:var(--green);font-size:32px;font-weight:bold}
+.receipt{width:100%;max-width:360px;margin:20px auto;padding:18px;border:1px dashed #9aa5b1;background:white;color:#111;font-family:Arial,sans-serif;text-align:center}
 .receipt h3{font-size:16px;margin:4px 0}
 .receipt p{font-size:11px;line-height:1.5;margin:5px 0}
 .receipt hr{border:0;border-top:1px dashed #777;margin:12px 0}
-.receipt .receipt-code{
-  font-size:12px;font-weight:bold;
-  overflow-wrap:anywhere;margin:8px 0;
-}
-#receiptQr{
-  display:flex;justify-content:center;
-  margin:14px auto;
-  min-height:130px;
-}
-#receiptQr img,#receiptQr canvas{
-  margin:auto;
-}
+.receipt-code{font-size:12px;font-weight:bold;overflow-wrap:anywhere;margin:8px 0}
+#receiptQr{display:flex;justify-content:center;margin:14px auto;min-height:130px}
+#receiptQr img,#receiptQr canvas{margin:auto}
 .receipt-foot{font-size:10px!important;color:#333}
-.dashboard-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:12px;margin:20px 0;
-}
-.stat{
-  background:#f5f8fc;border:1px solid var(--border);
-  border-radius:12px;padding:18px;text-align:center;
-}
+.dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat{background:#f5f8fc;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center}
 .stat strong{display:block;font-size:27px;color:var(--blue);margin-top:6px}
 .stat span{font-size:12px;color:var(--muted)}
 .bar-wrap{margin:16px 0}
@@ -234,10 +100,7 @@ main{
 .bar-bg{height:13px;border-radius:20px;background:#e8edf3;overflow:hidden}
 .bar-fill{height:100%;background:var(--blue2);border-radius:20px;width:0}
 .admin-note{font-size:12px;color:var(--muted);line-height:1.6}
-footer{
-  text-align:center;color:#7b8796;font-size:11px;
-  padding:20px 12px 30px;
-}
+footer{text-align:center;color:#7b8796;font-size:11px;padding:20px 12px 30px}
 .hidden{display:none!important}
 @media(max-width:650px){
   .header-inner{align-items:flex-start;flex-direction:column}
@@ -258,13 +121,7 @@ footer{
   body{background:white!important;margin:0!important;padding:0!important}
   body *{visibility:hidden!important}
   #receiptPrint,#receiptPrint *{visibility:visible!important}
-  #receiptPrint{
-    display:block!important;
-    position:absolute!important;left:0!important;top:0!important;
-    width:74mm!important;max-width:74mm!important;
-    margin:0!important;padding:2mm!important;
-    border:0!important;box-shadow:none!important;
-  }
+  #receiptPrint{display:block!important;position:absolute!important;left:0!important;top:0!important;width:74mm!important;max-width:74mm!important;margin:0!important;padding:2mm!important;border:0!important;box-shadow:none!important}
   #receiptPrint .no-print{display:none!important}
   #receiptPrint img{max-width:42mm!important}
 }
@@ -291,7 +148,6 @@ footer{
 
 <main>
 
-<!-- BERANDA -->
 <section id="home" class="page active">
   <div class="hero">
     <div>
@@ -317,7 +173,7 @@ footer{
     <h2 class="section-title">ALUR SIMULASI PEMILIHAN</h2>
     <p class="section-desc">Ikuti empat tahapan sederhana berikut.</p>
     <div class="steps">
-      <div class="step"><div class="step-number">1</div><strong>Verifikasi</strong><p>Masukkan kode simulasi atau pindai QR undangan.</p></div>
+      <div class="step"><div class="step-number">1</div><strong>Verifikasi</strong><p>Pindai QR Code undangan.</p></div>
       <div class="step"><div class="step-number">2</div><strong>Pilih Calon</strong><p>Pilih salah satu calon pada layar perangkat.</p></div>
       <div class="step"><div class="step-number">3</div><strong>Konfirmasi</strong><p>Periksa kembali pilihan sebelum dikonfirmasi.</p></div>
       <div class="step"><div class="step-number">4</div><strong>Bukti Simulasi</strong><p>Dapatkan bukti partisipasi dengan QR Code.</p></div>
@@ -325,32 +181,41 @@ footer{
   </div>
 </section>
 
-<!-- LOGIN -->
+<!-- VERIFIKASI QR OTOMATIS -->
 <section id="login" class="page">
   <div class="panel center">
     <h2 class="section-title">VERIFIKASI PEMILIH</h2>
-    <p class="section-desc">Masukkan kode simulasi atau pindai QR Code contoh.</p>
-
-    <div style="max-width:430px;margin:25px auto;text-align:left">
-      <label class="form-label" for="voterCode">Kode Simulasi</label>
-      <input id="voterCode" class="form-control" placeholder="Contoh: SMG-001" autocomplete="off">
-      <button class="btn btn-primary btn-block" onclick="verifyCode()">VERIFIKASI KODE</button>
-      <div class="code-help">Kode contoh tersedia: SMG-001 sampai SMG-005.</div>
-    </div>
+    <p class="section-desc">
+      Silakan arahkan QR Code undangan ke kamera untuk memulai simulasi.
+    </p>
 
     <div class="scanner-box">
-      <strong>Pindai QR Code</strong>
-      <p class="code-help">Izinkan akses kamera jika ingin mencoba pemindaian QR.</p>
+      <div class="scanner-heading">PEMINDAIAN QR CODE</div>
+      <p class="scanner-instruction">
+        Posisikan QR Code di dalam kotak pemindaian. Sistem akan membaca
+        dan memeriksa kode secara otomatis.
+      </p>
+
       <div id="reader"></div>
-      <button id="scanButton" class="btn btn-outline btn-block" onclick="startScanner()">AKTIFKAN KAMERA</button>
-      <button id="stopScanButton" class="btn btn-outline btn-block hidden" onclick="stopScanner()">MATIKAN KAMERA</button>
+
+      <p id="cameraStatus" class="camera-status">
+        Menyiapkan kamera...
+      </p>
+
+      <button id="retryCamera" class="btn btn-primary btn-block hidden" onclick="startScanner()">
+        COBA AKTIFKAN KAMERA KEMBALI
+      </button>
+
+      <p class="camera-help">
+        Pastikan izin kamera diberikan pada browser. Jika kamera belum aktif,
+        petugas dapat membantu mengaktifkannya kembali.
+      </p>
     </div>
-    <button class="btn btn-outline" onclick="home()">KEMBALI</button>
-    <p id="loginMessage" style="color:#b42318;font-size:13px"></p>
+
+    <button class="btn btn-outline" onclick="home()">KEMBALI KE BERANDA</button>
   </div>
 </section>
 
-<!-- PILIH CALON -->
 <section id="vote" class="page">
   <div class="panel">
     <div class="committee-title">
@@ -383,7 +248,6 @@ footer{
   </div>
 </section>
 
-<!-- REVIEW -->
 <section id="review" class="page">
   <div class="panel center">
     <h2 class="section-title">KONFIRMASI PILIHAN</h2>
@@ -401,7 +265,6 @@ footer{
   </div>
 </section>
 
-<!-- SUKSES DAN BUKTI -->
 <section id="success" class="page">
   <div class="panel center">
     <div class="success-icon">✓</div>
@@ -440,13 +303,12 @@ footer{
       <button class="btn btn-primary" onclick="printReceipt()">CETAK BUKTI</button>
       <button class="btn btn-outline" onclick="home()">KEMBALI KE BERANDA</button>
     </div>
-    <p id="printMessage" class="admin-note no-print">
+    <p class="admin-note no-print">
       Untuk mencetak, pilih printer thermal yang sudah terhubung pada dialog cetak browser.
     </p>
   </div>
 </section>
 
-<!-- DASHBOARD -->
 <section id="admin" class="page">
   <div class="panel">
     <h2 class="section-title">DASHBOARD SIMULASI</h2>
@@ -491,19 +353,21 @@ footer{
 </footer>
 
 <script>
-const demoCodes = ["SMG-001","SMG-002","SMG-003","SMG-004","SMG-005"];
+const demoCodes=["SMG-001","SMG-002","SMG-003","SMG-004","SMG-005"];
 
-let currentCode = "";
-let selected = 0;
-let html5QrCode = null;
-let currentReceiptId = "";
+let currentCode="";
+let selected=0;
+let html5QrCode=null;
+let currentReceiptId="";
+let scannerStarting=false;
+let scanLocked=false;
 
 function getUsed(){
-  try{return JSON.parse(localStorage.getItem("smg_used") || "[]")}
+  try{return JSON.parse(localStorage.getItem("smg_used")||"[]")}
   catch(e){return []}
 }
 function getVotes(){
-  try{return JSON.parse(localStorage.getItem("smg_votes") || "[]")}
+  try{return JSON.parse(localStorage.getItem("smg_votes")||"[]")}
   catch(e){return []}
 }
 function show(id){
@@ -511,36 +375,120 @@ function show(id){
   document.getElementById(id).classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function setCameraStatus(message,type=""){
+  const el=document.getElementById("cameraStatus");
+  el.textContent=message;
+  el.className="camera-status "+type;
+}
 function home(){
   stopScanner();
+  currentCode="";
+  selected=0;
   show("home");
 }
 function showLogin(){
   currentCode="";
-  document.getElementById("voterCode").value="";
-  document.getElementById("loginMessage").textContent="";
+  scanLocked=false;
   show("login");
+  setCameraStatus("Menyiapkan kamera...");
+  document.getElementById("retryCamera").classList.add("hidden");
+
+  // Kamera langsung dimulai setelah pemilih menekan tombol Mulai Simulasi.
+  startScanner();
 }
-function verifyCode(){
-  const code=document.getElementById("voterCode").value.trim().toUpperCase();
-  verifyScannedCode(code);
+async function startScanner(){
+  if(scannerStarting || (html5QrCode && html5QrCode.isScanning))return;
+
+  scannerStarting=true;
+  scanLocked=false;
+  document.getElementById("retryCamera").classList.add("hidden");
+  setCameraStatus("Meminta izin kamera. Silakan izinkan akses kamera jika diminta.");
+
+  try{
+    if(typeof Html5Qrcode==="undefined"){
+      throw new Error("LIBRARY_NOT_LOADED");
+    }
+
+    if(html5QrCode){
+      try{
+        if(html5QrCode.isScanning)await html5QrCode.stop();
+        html5QrCode.clear();
+      }catch(e){}
+      html5QrCode=null;
+    }
+
+    html5QrCode=new Html5Qrcode("reader");
+
+    await html5QrCode.start(
+      {facingMode:"environment"},
+      {
+        fps:10,
+        qrbox:function(viewfinderWidth,viewfinderHeight){
+          const size=Math.floor(Math.min(viewfinderWidth,viewfinderHeight)*0.72);
+          return {width:size,height:size};
+        },
+        aspectRatio:1.0
+      },
+      decodedText=>{
+        if(scanLocked)return;
+        scanLocked=true;
+        verifyScannedCode(decodedText.trim().toUpperCase());
+      },
+      ()=>{}
+    );
+
+    setCameraStatus("Kamera aktif. Arahkan QR Code undangan ke dalam kotak pemindaian.","success");
+  }catch(e){
+    html5QrCode=null;
+    let message="Kamera tidak dapat diaktifkan. Periksa izin kamera pada browser, lalu coba kembali.";
+
+    if(e && e.message==="LIBRARY_NOT_LOADED"){
+      message="Fitur pemindai belum berhasil dimuat. Periksa koneksi internet perangkat.";
+    }else if(location.protocol!=="https:" && location.hostname!=="localhost"){
+      message="Kamera membutuhkan koneksi HTTPS. Buka website melalui alamat GitHub Pages.";
+    }
+
+    setCameraStatus(message,"error");
+    document.getElementById("retryCamera").classList.remove("hidden");
+  }finally{
+    scannerStarting=false;
+  }
 }
-function verifyScannedCode(code){
-  const message=document.getElementById("loginMessage");
+async function stopScanner(){
+  if(html5QrCode){
+    const scanner=html5QrCode;
+    html5QrCode=null;
+    try{
+      if(scanner.isScanning)await scanner.stop();
+      scanner.clear();
+    }catch(e){}
+  }
+  scannerStarting=false;
+}
+async function verifyScannedCode(code){
+  if(!code)return;
+
+  setCameraStatus("QR Code terbaca. Sedang memeriksa kode...");
+  await stopScanner();
+
   const used=getUsed();
 
   if(!demoCodes.includes(code)){
-    message.textContent="Kode simulasi tidak ditemukan. Silakan periksa kembali.";
+    scanLocked=false;
+    setCameraStatus("QR Code tidak dikenali. Silakan coba pindai QR Code undangan yang benar.","error");
+    document.getElementById("retryCamera").classList.remove("hidden");
     return;
   }
+
   if(used.includes(code)){
-    message.textContent="Kode simulasi ini sudah pernah digunakan.";
+    scanLocked=false;
+    setCameraStatus("QR Code ini sudah pernah digunakan dalam simulasi.","error");
+    document.getElementById("retryCamera").classList.remove("hidden");
     return;
   }
 
   currentCode=code;
   selected=0;
-  stopScanner();
   showVote();
 }
 function showVote(){
@@ -563,14 +511,14 @@ function changeChoice(){
 }
 function makeReceiptId(){
   const bytes=new Uint8Array(16);
-  if(window.crypto && window.crypto.getRandomValues){
+  if(window.crypto&&window.crypto.getRandomValues){
     window.crypto.getRandomValues(bytes);
     return Array.from(bytes).map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
   }
   return Date.now().toString(16).toUpperCase()+Math.random().toString(16).slice(2,12).toUpperCase();
 }
 function confirmVote(){
-  if(!currentCode || !selected){
+  if(!currentCode||!selected){
     alert("Data simulasi tidak lengkap. Silakan ulangi proses.");
     return;
   }
@@ -587,7 +535,6 @@ function confirmVote(){
   const receiptId=makeReceiptId();
   const now=new Date();
 
-  // Data ini hanya tersimpan lokal untuk keperluan demonstrasi.
   votes.push({
     candidate:selected,
     receiptId:receiptId,
@@ -620,7 +567,6 @@ function renderReceipt(receiptId,date){
   const qr=document.getElementById("receiptQr");
   qr.innerHTML="";
 
-  // QR hanya berisi token acak bukti simulasi, bukan identitas atau pilihan calon.
   const payload="BUKTI-SIMULASI|"+receiptId;
 
   if(typeof QRCode!=="undefined"){
@@ -664,6 +610,7 @@ function updateDashboard(){
 function resetDemo(){
   const ok=confirm("Yakin ingin menghapus seluruh data simulasi pada browser ini?");
   if(!ok)return;
+
   localStorage.removeItem("smg_votes");
   localStorage.removeItem("smg_used");
   currentCode="";
@@ -672,45 +619,10 @@ function resetDemo(){
   updateDashboard();
   alert("Data simulasi pada browser ini telah direset.");
 }
-async function startScanner(){
-  const message=document.getElementById("loginMessage");
-  if(typeof Html5Qrcode==="undefined"){
-    message.textContent="Fitur pemindai tidak dapat dimuat. Periksa koneksi internet.";
-    return;
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden && html5QrCode){
+    stopScanner();
   }
-  try{
-    html5QrCode=new Html5Qrcode("reader");
-    await html5QrCode.start(
-      {facingMode:"environment"},
-      {fps:10,qrbox:{width:230,height:230}},
-      decodedText=>{
-        const value=decodedText.trim().toUpperCase();
-        verifyScannedCode(value);
-      },
-      errorMessage=>{}
-    );
-    document.getElementById("scanButton").classList.add("hidden");
-    document.getElementById("stopScanButton").classList.remove("hidden");
-  }catch(e){
-    message.textContent="Kamera tidak dapat diaktifkan. Pastikan izin kamera diberikan dan gunakan HTTPS.";
-    html5QrCode=null;
-  }
-}
-async function stopScanner(){
-  if(html5QrCode){
-    try{
-      if(html5QrCode.isScanning) await html5QrCode.stop();
-      html5QrCode.clear();
-    }catch(e){}
-    html5QrCode=null;
-  }
-  const scanButton=document.getElementById("scanButton");
-  const stopButton=document.getElementById("stopScanButton");
-  if(scanButton)scanButton.classList.remove("hidden");
-  if(stopButton)stopButton.classList.add("hidden");
-}
-document.getElementById("voterCode").addEventListener("keydown",function(e){
-  if(e.key==="Enter")verifyCode();
 });
 </script>
 
