@@ -747,9 +747,7 @@ button{
 
 <main class="container">
 
-<!-- =========================
-     BERANDA
-========================= -->
+<!-- BERANDA -->
 <section id="home" class="page active">
 
   <div class="hero">
@@ -807,9 +805,7 @@ button{
 </section>
 
 
-<!-- =========================
-     TAHAP 1
-========================= -->
+<!-- TAHAP 1 -->
 <section id="login" class="page">
 
   <div class="card">
@@ -843,9 +839,7 @@ button{
 </section>
 
 
-<!-- =========================
-     TAHAP 2
-========================= -->
+<!-- TAHAP 2 -->
 <section id="vote" class="page">
 
   <div class="card">
@@ -942,9 +936,7 @@ button{
 </section>
 
 
-<!-- =========================
-     TAHAP 3
-========================= -->
+<!-- TAHAP 3 -->
 <section id="review" class="page">
 
   <div class="card review-card">
@@ -1007,9 +999,7 @@ button{
 </section>
 
 
-<!-- =========================
-     TAHAP 4
-========================= -->
+<!-- TAHAP 4 -->
 <section id="success" class="page">
 
   <div class="card success">
@@ -1065,9 +1055,7 @@ button{
 </section>
 
 
-<!-- =========================
-     DASHBOARD
-========================= -->
+<!-- DASHBOARD -->
 <section id="admin" class="page">
 
   <div class="card">
@@ -1414,12 +1402,13 @@ async function stopScanner(){
    VERIFIKASI QR
 ========================================== */
 
-function verifyScannedCode(code){
+async function verifyScannedCode(code){
 
   code = String(code || "").trim();
 
   const used = getUsed();
 
+  // QR CODE TIDAK DIKENALI
   if(!demoCodes.includes(code)){
 
     scanLocked = false;
@@ -1433,12 +1422,32 @@ function verifyScannedCode(code){
   }
 
 
+  // QR CODE SUDAH PERNAH DIGUNAKAN
   if(used.includes(code)){
 
-    scanLocked = false;
+    // Kunci pemindaian agar tidak membaca QR berulang kali.
+    scanLocked = true;
+
+    // Hentikan kamera sebelum menampilkan peringatan.
+    await stopScanner();
 
     setCameraStatus(
-      "QR Code ini sudah digunakan untuk simulasi."
+      "QR CODE SUDAH DIGUNAKAN! Silakan gunakan QR Code lain."
+    );
+
+    // Tampilkan tombol untuk mencoba QR lain.
+    const retryButton =
+      document.getElementById("retryCamera");
+
+    if(retryButton){
+      retryButton.style.display = "block";
+    }
+
+    // Tampilkan peringatan yang jelas.
+    alert(
+      "QR CODE SUDAH DIGUNAKAN!\n\n" +
+      "QR Code ini sudah pernah dipakai untuk simulasi.\n\n" +
+      "Silakan gunakan QR Code lain."
     );
 
     return;
@@ -1446,9 +1455,10 @@ function verifyScannedCode(code){
   }
 
 
+  // QR CODE VALID DAN BELUM DIGUNAKAN
   currentCode = code;
 
-  stopScanner();
+  await stopScanner();
 
   showVote();
 
