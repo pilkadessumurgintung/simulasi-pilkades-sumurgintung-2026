@@ -7,6 +7,8 @@
 <meta name="theme-color" content="#123b67">
 <title>Simulasi Pilkades Digital Sumurgintung 2026</title>
 
+<script src="https://unpkg.com/html5-qrcode"></script>
+
 <style>
 :root{
   --blue:#123b67;
@@ -61,6 +63,10 @@ button:focus-visible{
   outline:3px solid var(--gold);
   outline-offset:3px;
 }
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 .navbtn{
   background:#ffffff17;
   color:white;
@@ -108,22 +114,6 @@ h3{color:var(--blue)}
   line-height:1.7;
   margin:20px 0;
   text-align:left;
-}
-input{
-  width:100%;
-  padding:18px;
-  border:1px solid #ccd5df;
-  border-radius:12px;
-  font-size:20px;
-  text-align:center;
-  margin:15px 0;
-  letter-spacing:2px;
-  color:var(--blue);
-  outline:none;
-}
-input:focus{
-  border-color:var(--blue2);
-  box-shadow:0 0 0 3px #1d568b18;
 }
 .actions{
   display:flex;
@@ -190,14 +180,6 @@ input:focus{
   object-fit:contain;
   display:block;
 }
-.logo-caption{
-  text-align:center;
-  color:var(--blue);
-  font-size:15px;
-  line-height:1.6;
-  letter-spacing:.3px;
-  font-weight:bold;
-}
 .committee-title{
   text-align:center;
   color:var(--blue);
@@ -228,7 +210,7 @@ input:focus{
   display:block;
 }
 
-/* Calon */
+/* Kartu calon */
 .candidates{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -262,18 +244,16 @@ input:focus{
   position:relative;
   overflow:hidden;
 }
-.photo img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center;
-}
 .photo::after{
   content:"";
   position:absolute;
   bottom:0;left:0;right:0;
   height:5px;background:var(--gold);
+}
+.silhouette{
+  width:150px;
+  height:190px;
+  display:block;
 }
 .candidate-info{padding:22px}
 .number{
@@ -303,32 +283,28 @@ input:focus{
   margin:22px 0;
 }
 .review-photo{
-  display:block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   width:min(100%,280px);
   height:300px;
-  object-fit:contain;
-  object-position:center;
   margin:18px auto;
   border-radius:12px;
   background:linear-gradient(145deg,#e8eff7,#cbd9e8);
   border:1px solid #dce7f2;
 }
-.review-photo-error{
-  display:none;
-  color:#c0392b;
-  font-size:13px;
-  margin:10px 0;
+.review-photo .silhouette{
+  width:160px;
+  height:205px;
 }
 .review-number{
   color:#a57a20;
   font-weight:bold;
   font-size:14px;
 }
-#reviewName{
-  text-transform:uppercase;
-}
+#reviewName{text-transform:uppercase}
 
-/* KHUSUS TOMBOL TAHAP 03 */
+/* Tombol konfirmasi */
 #review .actions button.review-change{
   background-color:#dc3545 !important;
   color:#ffffff !important;
@@ -348,6 +324,39 @@ input:focus{
   background-color:#1e568b !important;
   color:#ffffff !important;
   border-color:#1e568b !important;
+}
+
+/* Scanner QR */
+.scanner-box{
+  max-width:480px;
+  margin:22px auto;
+  padding:14px;
+  background:#f4f7fb;
+  border:1px solid #dce7f2;
+  border-radius:16px;
+}
+#qr-reader{
+  width:100%;
+  overflow:hidden;
+  border-radius:12px;
+  background:#e8eef5;
+}
+#qr-reader video{
+  border-radius:10px;
+}
+.scan-status{
+  min-height:24px;
+  font-size:13px;
+  line-height:1.6;
+  margin:12px 0;
+  color:var(--muted);
+}
+.scan-status.error{color:#c0392b}
+.scan-status.success{color:var(--green)}
+.scan-help{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
 }
 
 /* Dashboard */
@@ -488,7 +497,7 @@ footer{
     <div class="flow">
       <div class="flow-item">
         <div class="flow-number">01</div>
-        <p>Masukkan kode undangan</p>
+        <p>Scan QR Code undangan</p>
       </div>
       <div class="flow-item">
         <div class="flow-number">02</div>
@@ -509,24 +518,38 @@ footer{
 <section id="login" class="step">
   <div class="panel center">
     <div class="eyebrow">Tahap 01</div>
-    <h2>Verifikasi Kode Undangan</h2>
-    <p class="muted">Masukkan kode undangan simulasi untuk melanjutkan.</p>
+    <h2>Verifikasi Undangan</h2>
+    <p class="muted">Silakan scan QR Code yang terdapat pada undangan simulasi Anda.</p>
 
-    <input id="code" type="text"
-      placeholder="Contoh: SMG-001"
-      autocomplete="off"
-      maxlength="7"
-      onkeydown="if(event.key==='Enter')verifyCode()">
+    <div class="scanner-box">
+      <div id="qr-reader"></div>
+      <p id="scanStatus" class="scan-status">
+        Kamera belum diaktifkan.
+      </p>
+      <button id="startScanButton" class="primary" onclick="startScanner()">
+        SCAN QR CODE
+      </button>
+      <button id="stopScanButton" class="secondary hidden" onclick="stopScanner()">
+        MATIKAN KAMERA
+      </button>
+    </div>
+
+    <p class="scan-help">
+      Izinkan akses kamera pada browser. Arahkan kamera ke QR Code
+      sampai kode berhasil terbaca.
+    </p>
 
     <div class="notice">
-      Gunakan kode percobaan berikut:<br>
-      <strong>SMG-001, SMG-002, SMG-003, SMG-004, SMG-005</strong>
+      <strong>QR CODE UNTUK UJI COBA</strong><br>
+      Sistem simulasi menerima QR dengan isi:<br>
+      <strong>SMG-001, SMG-002, SMG-003, SMG-004, SMG-005</strong><br>
+      QR harus berisi teks kode tersebut, bukan hanya menampilkan tulisan di gambar.
     </div>
 
     <p id="loginError" style="color:#c0392b"></p>
+
     <div class="actions">
       <button class="secondary" onclick="home()">KEMBALI</button>
-      <button class="primary" onclick="verifyCode()">LANJUTKAN</button>
     </div>
   </div>
 </section>
@@ -558,13 +581,17 @@ footer{
     <p class="muted">Sentuh salah satu kartu calon di bawah ini.</p>
 
     <div class="candidates">
+
       <div class="candidate" id="candidate1" onclick="selectCandidate(1)">
         <div class="photo">
-          <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/OMSIH.jpg" alt="Foto calon kepala desa nomor urut 1, Omsih">
+          <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon">
+            <circle cx="80" cy="52" r="35" fill="#718096"/>
+            <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
+          </svg>
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 1</div>
-          <h3>OMSIH</h3>
+          <h3>CALON A</h3>
           <p>Calon Kepala Desa</p>
           <button class="secondary">PILIH NOMOR 1</button>
         </div>
@@ -572,15 +599,19 @@ footer{
 
       <div class="candidate" id="candidate2" onclick="selectCandidate(2)">
         <div class="photo">
-          <img src="https://pilkadessumurgintung.github.io/simulasi-pilkades-sumurgintung-2026/TATANG%20GUNAWAN.jpeg" alt="Foto calon kepala desa nomor urut 2, Tatang Gunawan">
+          <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon">
+            <circle cx="80" cy="52" r="35" fill="#718096"/>
+            <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
+          </svg>
         </div>
         <div class="candidate-info">
           <div class="number">CALON NOMOR URUT 2</div>
-          <h3>TATANG GUNAWAN</h3>
+          <h3>CALON B</h3>
           <p>Calon Kepala Desa</p>
           <button class="secondary">PILIH NOMOR 2</button>
         </div>
       </div>
+
     </div>
 
     <p id="voteError" style="color:#c0392b"></p>
@@ -599,14 +630,12 @@ footer{
     <div class="review-card">
       <div class="eyebrow">Pilihan Anda</div>
 
-      <img id="reviewPhoto"
-        class="review-photo"
-        src=""
-        alt="Foto calon yang dipilih">
-
-      <p id="reviewPhotoError" class="review-photo-error">
-        Foto calon tidak berhasil dimuat. Silakan kembali dan periksa pilihan.
-      </p>
+      <div class="review-photo">
+        <svg class="silhouette" viewBox="0 0 160 200" aria-label="Siluet calon yang dipilih">
+          <circle cx="80" cy="52" r="35" fill="#718096"/>
+          <path d="M18 190 C20 130 43 105 80 105 C117 105 140 130 142 190 Z" fill="#718096"/>
+        </svg>
+      </div>
 
       <h2 id="reviewName">-</h2>
       <p id="reviewNumber" class="review-number"></p>
@@ -614,7 +643,7 @@ footer{
 
     <div class="notice">
       Setelah menekan tombol konfirmasi, simulasi dianggap
-      selesai dan kode percobaan tidak dapat digunakan kembali
+      selesai dan QR undangan tidak dapat digunakan kembali
       pada browser ini.
     </div>
 
@@ -636,7 +665,7 @@ footer{
     </p>
     <div class="notice">
       <strong>SIMULASI SELESAI</strong><br>
-      Kode percobaan telah ditandai sebagai telah digunakan
+      QR undangan telah ditandai sebagai telah digunakan
       pada browser/perangkat ini.
     </div>
     <button class="primary" onclick="home()">KEMBALI KE BERANDA</button>
@@ -667,13 +696,13 @@ footer{
     <h3>Rekapitulasi Pilihan Simulasi</h3>
 
     <div class="resultrow">
-      <strong>Nomor 1 — OMSIH</strong>
+      <strong>Nomor 1 — CALON A</strong>
       <strong id="count1">0</strong>
     </div>
     <div class="bar"><div class="fill" id="bar1"></div></div>
 
     <div class="resultrow">
-      <strong>Nomor 2 — TATANG GUNAWAN</strong>
+      <strong>Nomor 2 — CALON B</strong>
       <strong id="count2">0</strong>
     </div>
     <div class="bar"><div class="fill" id="bar2"></div></div>
@@ -705,6 +734,8 @@ const demoCodes = [
 
 let selected = 0;
 let currentCode = "";
+let qrScanner = null;
+let scannerRunning = false;
 
 function getUsed(){
   return JSON.parse(localStorage.getItem("smg_used") || "[]");
@@ -723,34 +754,156 @@ function show(id){
 }
 
 function home(){
+  stopScanner();
   show("home");
 }
 
 function showLogin(){
-  document.getElementById("code").value="";
+  stopScanner();
   document.getElementById("loginError").textContent="";
+  document.getElementById("scanStatus").textContent=
+    "Kamera belum diaktifkan.";
+  document.getElementById("scanStatus").className="scan-status";
+  document.getElementById("startScanButton").classList.remove("hidden");
+  document.getElementById("stopScanButton").classList.add("hidden");
   show("login");
-  setTimeout(()=>document.getElementById("code").focus(),100);
 }
 
-function verifyCode(){
-  const code=document.getElementById("code").value.trim().toUpperCase();
+async function startScanner(){
+  const status=document.getElementById("scanStatus");
+  const startButton=document.getElementById("startScanButton");
+  const stopButton=document.getElementById("stopScanButton");
+
+  if(!window.Html5Qrcode){
+    status.textContent=
+      "Pustaka scanner tidak berhasil dimuat. Periksa koneksi internet lalu muat ulang halaman.";
+    status.className="scan-status error";
+    return;
+  }
+
+  if(scannerRunning) return;
+
+  startButton.disabled=true;
+  status.textContent="Meminta izin kamera...";
+  status.className="scan-status";
+
+  try{
+    qrScanner=new Html5Qrcode("qr-reader");
+
+    await qrScanner.start(
+      {facingMode:"environment"},
+      {
+        fps:10,
+        qrbox:{width:250,height:250},
+        aspectRatio:1
+      },
+      async(decodedText)=>{
+        if(!scannerRunning && qrScanner===null) return;
+
+        scannerRunning=false;
+        status.textContent="QR Code berhasil dibaca. Memeriksa undangan...";
+        status.className="scan-status success";
+
+        try{
+          await qrScanner.stop();
+        }catch(e){}
+
+        try{
+          await qrScanner.clear();
+        }catch(e){}
+
+        qrScanner=null;
+        stopButton.classList.add("hidden");
+        startButton.classList.remove("hidden");
+        startButton.disabled=false;
+
+        verifyScannedCode(decodedText);
+      },
+      ()=>{
+        // Kesalahan pembacaan sementara diabaikan.
+      }
+    );
+
+    scannerRunning=true;
+    status.textContent="Kamera aktif. Arahkan ke QR Code undangan.";
+    status.className="scan-status";
+    startButton.classList.add("hidden");
+    stopButton.classList.remove("hidden");
+
+  }catch(error){
+    qrScanner=null;
+    scannerRunning=false;
+    startButton.disabled=false;
+    startButton.classList.remove("hidden");
+    stopButton.classList.add("hidden");
+
+    status.textContent=
+      "Kamera tidak dapat dibuka. Pastikan izin kamera diberikan dan halaman dibuka melalui HTTPS.";
+    status.className="scan-status error";
+  }
+}
+
+async function stopScanner(){
+  const startButton=document.getElementById("startScanButton");
+  const stopButton=document.getElementById("stopScanButton");
+
+  if(qrScanner){
+    try{
+      if(scannerRunning){
+        await qrScanner.stop();
+      }
+    }catch(e){}
+
+    try{
+      await qrScanner.clear();
+    }catch(e){}
+
+    qrScanner=null;
+  }
+
+  scannerRunning=false;
+
+  if(startButton){
+    startButton.disabled=false;
+    startButton.classList.remove("hidden");
+  }
+
+  if(stopButton){
+    stopButton.classList.add("hidden");
+  }
+}
+
+function verifyScannedCode(scannedText){
+  const code=String(scannedText).trim().toUpperCase();
+  const error=document.getElementById("loginError");
+  const status=document.getElementById("scanStatus");
 
   if(!demoCodes.includes(code)){
-    document.getElementById("loginError").textContent=
-      "Kode tidak dikenal. Gunakan kode percobaan yang tersedia.";
+    error.textContent=
+      "QR Code tidak dikenal. Silakan gunakan QR Code uji coba yang terdaftar.";
+    status.textContent="QR Code tidak valid.";
+    status.className="scan-status error";
     return;
   }
 
   if(getUsed().includes(code)){
-    document.getElementById("loginError").textContent=
-      "Kode ini sudah digunakan pada browser ini.";
+    error.textContent=
+      "QR Code ini sudah digunakan pada browser/perangkat ini.";
+    status.textContent="QR Code sudah pernah digunakan.";
+    status.className="scan-status error";
     return;
   }
 
+  error.textContent="";
+  status.textContent="Verifikasi berhasil. Undangan simulasi terdaftar.";
+  status.className="scan-status success";
+
   currentCode=code;
   selected=0;
-  showVote();
+
+  setTimeout(()=>{
+    showVote();
+  },700);
 }
 
 function showVote(){
@@ -779,41 +932,26 @@ function reviewVote(){
     return;
   }
 
-  const selectedCard=document.getElementById("candidate"+selected);
-  const candidateImage=selectedCard.querySelector(".photo img");
-  const reviewPhoto=document.getElementById("reviewPhoto");
-  const reviewPhotoError=document.getElementById("reviewPhotoError");
-
   document.getElementById("reviewName").textContent=
-    selected===1?"OMSIH":"TATANG GUNAWAN";
+    selected===1?"CALON A":"CALON B";
 
   document.getElementById("reviewNumber").textContent=
     "CALON NOMOR URUT "+selected;
-
-  reviewPhotoError.style.display="none";
-  reviewPhoto.style.display="block";
-  reviewPhoto.alt="Foto calon kepala desa nomor urut "+selected;
-
-  reviewPhoto.src=candidateImage.src;
-
-  reviewPhoto.onerror=function(){
-    reviewPhoto.style.display="none";
-    reviewPhotoError.style.display="block";
-  };
-
-  reviewPhoto.onload=function(){
-    reviewPhoto.style.display="block";
-    reviewPhotoError.style.display="none";
-  };
 
   show("review");
 }
 
 function confirmVote(){
+  if(!currentCode){
+    alert("Silakan lakukan verifikasi QR Code terlebih dahulu.");
+    home();
+    return;
+  }
+
   const used=getUsed();
 
   if(used.includes(currentCode)){
-    alert("Kode ini sudah digunakan.");
+    alert("QR Code ini sudah digunakan.");
     home();
     return;
   }
@@ -825,10 +963,13 @@ function confirmVote(){
   localStorage.setItem("smg_votes",JSON.stringify(votes));
   localStorage.setItem("smg_used",JSON.stringify(used));
 
+  currentCode="";
   show("success");
 }
 
 function showAdmin(){
+  stopScanner();
+
   const votes=getVotes();
 
   const a=votes.filter(v=>v.candidate===1).length;
