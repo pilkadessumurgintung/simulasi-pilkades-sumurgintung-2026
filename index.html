@@ -261,6 +261,19 @@ button{
   color:var(--muted);
   margin:12px 0;
   min-height:20px;
+  line-height:1.5;
+  font-weight:600;
+}
+
+/* PERINGATAN QR SUDAH DIGUNAKAN */
+.camera-status.error{
+  color:#dc3545;
+  background:#fff0f1;
+  border:1px solid #f5c2c7;
+  border-radius:9px;
+  padding:13px 12px;
+  font-size:15px;
+  font-weight:900;
 }
 
 .retry-btn{
@@ -804,7 +817,6 @@ button{
 
 </section>
 
-
 <!-- TAHAP 1 -->
 <section id="login" class="page">
 
@@ -822,7 +834,7 @@ button{
       <div id="reader"></div>
     </div>
 
-    <div id="cameraStatus" class="camera-status">
+    <div id="cameraStatus" class="camera-status" aria-live="polite">
       Menyiapkan kamera...
     </div>
 
@@ -837,7 +849,6 @@ button{
   </div>
 
 </section>
-
 
 <!-- TAHAP 2 -->
 <section id="vote" class="page">
@@ -893,7 +904,6 @@ button{
 
       </div>
 
-
       <!-- CALON 2 -->
       <div
         id="candidate2"
@@ -934,7 +944,6 @@ button{
   </div>
 
 </section>
-
 
 <!-- TAHAP 3 -->
 <section id="review" class="page">
@@ -998,7 +1007,6 @@ button{
 
 </section>
 
-
 <!-- TAHAP 4 -->
 <section id="success" class="page">
 
@@ -1053,7 +1061,6 @@ button{
   </div>
 
 </section>
-
 
 <!-- DASHBOARD -->
 <section id="admin" class="page">
@@ -1114,7 +1121,6 @@ button{
 
       </div>
 
-
       <div class="result-row">
 
         <div class="result-head">
@@ -1143,12 +1149,10 @@ button{
 
 </main>
 
-
 <div class="footer">
   Simulasi Pilkades Digital Desa Sumurgintung Tahun 2026.<br>
   Sistem ini dibuat untuk keperluan simulasi dan pembelajaran.
 </div>
-
 
 <script>
 
@@ -1178,7 +1182,6 @@ const candidates = {
   }
 };
 
-
 let currentCode = "";
 let selected = null;
 
@@ -1200,7 +1203,6 @@ function getUsed(){
   );
 
 }
-
 
 function getVotes(){
 
@@ -1263,24 +1265,41 @@ function showLogin(){
   show("login");
 
   setTimeout(() => {
-
     startScanner();
-
   }, 250);
 
 }
 
 
-function setCameraStatus(message){
+/* ==========================================
+   STATUS KAMERA
+========================================== */
 
-  const status = document.getElementById("cameraStatus");
+function setCameraStatus(message, type = ""){
+
+  const status =
+    document.getElementById("cameraStatus");
 
   if(status){
+
     status.textContent = message;
+
+    // Hapus kelas sebelumnya.
+    status.classList.remove("error");
+
+    // Tambahkan warna merah jika QR sudah digunakan.
+    if(type === "error"){
+      status.classList.add("error");
+    }
+
   }
 
 }
 
+
+/* ==========================================
+   MENJALANKAN KAMERA
+========================================== */
 
 async function startScanner(){
 
@@ -1298,7 +1317,9 @@ async function startScanner(){
   scannerStarting = true;
   scanLocked = false;
 
-  setCameraStatus("Menyiapkan kamera...");
+  setCameraStatus(
+    "Menyiapkan kamera..."
+  );
 
   try{
 
@@ -1345,7 +1366,7 @@ async function startScanner(){
 
       errorMessage => {
 
-        // Error pemindaian kecil/normal
+        // Kesalahan pemindaian kecil/normal
         // tidak perlu ditampilkan kepada pemilih.
 
       }
@@ -1376,6 +1397,10 @@ async function startScanner(){
 
 }
 
+
+/* ==========================================
+   MENGHENTIKAN KAMERA
+========================================== */
 
 async function stopScanner(){
 
@@ -1425,29 +1450,17 @@ async function verifyScannedCode(code){
   // QR CODE SUDAH PERNAH DIGUNAKAN
   if(used.includes(code)){
 
-    // Kunci pemindaian agar tidak membaca QR berulang kali.
-    scanLocked = true;
+    /*
+      QR sudah digunakan.
+      Tampilkan peringatan merah pada halaman.
+      Kamera tetap berjalan agar bisa membaca QR lain.
+    */
 
-    // Hentikan kamera sebelum menampilkan peringatan.
-    await stopScanner();
+    scanLocked = false;
 
     setCameraStatus(
-      "QR CODE SUDAH DIGUNAKAN! Silakan gunakan QR Code lain."
-    );
-
-    // Tampilkan tombol untuk mencoba QR lain.
-    const retryButton =
-      document.getElementById("retryCamera");
-
-    if(retryButton){
-      retryButton.style.display = "block";
-    }
-
-    // Tampilkan peringatan yang jelas.
-    alert(
-      "QR CODE SUDAH DIGUNAKAN!\n\n" +
-      "QR Code ini sudah pernah dipakai untuk simulasi.\n\n" +
-      "Silakan gunakan QR Code lain."
+      "⚠ QR CODE SUDAH DIGUNAKAN! Silakan gunakan QR Code lain.",
+      "error"
     );
 
     return;
@@ -1456,6 +1469,7 @@ async function verifyScannedCode(code){
 
 
   // QR CODE VALID DAN BELUM DIGUNAKAN
+
   currentCode = code;
 
   await stopScanner();
@@ -1515,16 +1529,8 @@ function selectCandidate(number){
     card.classList.add("selected");
   }
 
-  /*
-    Beri waktu sangat singkat agar
-    tanda "✓ PILIHAN ANDA" sempat terlihat
-    sebelum pindah halaman.
-  */
-
   setTimeout(() => {
-
     showReview();
-
   }, 450);
 
 }
@@ -1629,13 +1635,11 @@ function confirmVote(){
 
   }
 
-
   const votes =
     getVotes();
 
   currentReceiptId =
     makeReceiptId();
-
 
   const voteData = {
 
@@ -1647,12 +1651,9 @@ function confirmVote(){
 
   };
 
-
   votes.push(voteData);
 
-
   used.push(currentCode);
-
 
   localStorage.setItem(
     "pilkades_votes",
@@ -1663,7 +1664,6 @@ function confirmVote(){
     "pilkades_used_codes",
     JSON.stringify(used)
   );
-
 
   renderReceipt();
 
@@ -1687,7 +1687,6 @@ function renderReceipt(){
     "BUKTI-SIMULASI|" +
     currentReceiptId;
 
-
   new QRCode(qrContainer, {
 
     text:payload,
@@ -1700,7 +1699,6 @@ function renderReceipt(){
       QRCode.CorrectLevel.M
 
   });
-
 
   document.getElementById("receiptId").textContent =
     currentReceiptId;
@@ -1739,10 +1737,8 @@ function updateDashboard(){
   const votes =
     getVotes();
 
-
   let candidate1 = 0;
   let candidate2 = 0;
-
 
   votes.forEach(vote => {
 
@@ -1756,10 +1752,8 @@ function updateDashboard(){
 
   });
 
-
   const total =
     candidate1 + candidate2;
-
 
   document.getElementById("totalVotes").textContent =
     total;
@@ -1770,10 +1764,8 @@ function updateDashboard(){
   document.getElementById("candidate2Votes").textContent =
     candidate2;
 
-
   let percent1 = 0;
   let percent2 = 0;
-
 
   if(total > 0){
 
@@ -1785,13 +1777,11 @@ function updateDashboard(){
 
   }
 
-
   document.getElementById("candidate1Percent").textContent =
     percent1 + "%";
 
   document.getElementById("candidate2Percent").textContent =
     percent2 + "%";
-
 
   document.getElementById("candidate1Bar").style.width =
     percent1 + "%";
@@ -1813,11 +1803,9 @@ function resetDemo(){
       "Apakah Anda yakin ingin menghapus seluruh data simulasi pada perangkat ini?"
     );
 
-
   if(!yakin){
     return;
   }
-
 
   localStorage.removeItem(
     "pilkades_votes"
@@ -1827,9 +1815,7 @@ function resetDemo(){
     "pilkades_used_codes"
   );
 
-
   updateDashboard();
-
 
   alert(
     "Data simulasi berhasil direset."
