@@ -9,5 +9,11 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#f4f7fb",
-  "theme_color": "#0d47a1"
+  "theme_color": "#0d47a1",
+  "icons": [
+    {
+      "src": "./1%20%281%29.png",
+      "type": "image/png"
+    }
+  ]
 }
