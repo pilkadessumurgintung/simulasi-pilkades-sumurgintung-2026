@@ -2004,6 +2004,219 @@ button{
   border:2px solid #dc2626 !important;
 }
 
+  
+/* ==========================================
+   REDESAIN HALAMAN SIMULASI BERHASIL
+========================================== */
+
+#success{
+  max-width:850px;
+  margin:0 auto;
+}
+
+#success .card.success{
+  max-width:650px;
+  margin:20px auto;
+  padding:32px 28px;
+  background:#fff;
+  border:1px solid #dce6f2;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(8,45,103,.08);
+}
+
+/* IKON BERHASIL */
+#success .success-icon{
+  width:76px;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 18px;
+  border-radius:50%;
+  background:#e8f8ef;
+  border:3px solid #22a35a;
+  color:#168548;
+  font-size:43px;
+  font-weight:900;
+  box-shadow:0 5px 15px rgba(34,163,90,.12);
+}
+
+/* JUDUL DAN KETERANGAN */
+#success h2{
+  color:#082d67;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin-bottom:10px;
+}
+
+#success .card.success > p{
+  color:#64748b;
+  font-size:14px;
+  line-height:1.7;
+  margin:0 auto 23px;
+}
+
+/* KARTU BUKTI SIMULASI */
+#success .receipt{
+  max-width:430px;
+  margin:0 auto 22px;
+  padding:23px 18px;
+  background:#f7faff;
+  border:1px solid #dce7f5;
+  border-radius:17px;
+}
+
+#success .receipt-title{
+  color:#082d67;
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+
+#success .receipt-subtitle{
+  color:#64748b;
+  font-size:12px;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+/* QR CODE */
+#success #receiptQR{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 15px;
+  min-height:150px;
+}
+
+#success #receiptQR img,
+#success #receiptQR canvas{
+  max-width:180px;
+  height:auto;
+  padding:9px;
+  background:#fff;
+  border:1px solid #e1e8f0;
+  border-radius:10px;
+}
+
+/* NOMOR BUKTI */
+#success .receipt-id{
+  display:inline-block;
+  padding:9px 17px;
+  background:#eaf1fb;
+  border:1px dashed #7da5d7;
+  border-radius:9px;
+  color:#0d47a1;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1px;
+  overflow-wrap:anywhere;
+}
+
+/* TOMBOL */
+#success .print-btn,
+#success .home-btn{
+  display:block;
+  width:100%;
+  max-width:430px;
+  min-height:52px;
+  margin:10px auto;
+  padding:14px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.4px;
+  transition:transform .2s;
+}
+
+#success .print-btn{
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  border:2px solid #0d47a1;
+  color:#fff;
+  box-shadow:0 5px 13px rgba(13,71,161,.18);
+}
+
+#success .home-btn{
+  background:#fff;
+  border:2px solid #dc2626;
+  color:#dc2626;
+}
+
+#success .print-btn:active,
+#success .home-btn:active{
+  transform:scale(.98);
+}
+
+/* TAMPILAN HP */
+@media(max-width:650px){
+
+  #success .card.success{
+    margin:10px auto;
+    padding:23px 14px;
+    border-radius:17px;
+  }
+
+  #success .success-icon{
+    width:65px;
+    height:65px;
+    font-size:36px;
+  }
+
+  #success h2{
+    font-size:21px;
+  }
+
+  #success .card.success > p{
+    font-size:12px;
+  }
+
+  #success .receipt{
+    padding:18px 12px;
+  }
+
+  #success .receipt-title{
+    font-size:15px;
+  }
+
+  #success .receipt-id{
+    font-size:13px;
+  }
+
+  #success .print-btn,
+  #success .home-btn{
+    min-height:48px;
+    font-size:12px;
+  }
+}
+
+/* TAMPILAN TABLET LANDSCAPE */
+@media(min-width:651px) and (orientation:landscape){
+
+  #success .card.success{
+    padding:20px 25px;
+  }
+
+  #success .success-icon{
+    width:60px;
+    height:60px;
+    font-size:34px;
+    margin-bottom:10px;
+  }
+
+  #success .receipt{
+    padding:15px;
+    margin-bottom:13px;
+  }
+
+  #success .receipt-subtitle{
+    margin-bottom:10px;
+  }
+}
+
+
 
 
 
