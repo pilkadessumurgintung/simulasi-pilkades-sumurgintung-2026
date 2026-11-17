@@ -268,7 +268,6 @@ button{
   font-weight:600;
 }
 
-/* PERINGATAN QR SUDAH DIGUNAKAN */
 .camera-status.error{
   color:#dc3545;
   background:#fff0f1;
@@ -305,6 +304,7 @@ button{
   position:relative;
   transition:.15s;
   box-shadow:0 4px 12px rgba(0,0,0,.06);
+  cursor:pointer;
 }
 
 .candidate:active{
@@ -374,26 +374,49 @@ button{
   margin-top:20px;
 }
 
+/* TOMBOL LANJUT PILIHAN */
+.vote-action{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-top:18px;
+}
+
+.choose-confirm-btn{
+  width:min(100%,500px);
+  padding:16px;
+  border:2px solid var(--blue2);
+  border-radius:10px;
+  background:var(--blue);
+  color:white;
+  font-size:16px;
+  font-weight:900;
+  transition:.2s;
+}
+
+.choose-confirm-btn:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.choose-confirm-btn:not(:disabled):active{
+  transform:scale(.98);
+}
+
 /* REVIEW */
 .review-card{
   text-align:center;
 }
 
-.review-label{
-  color:var(--muted);
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:15px;
-}
-
 .review-photo{
   width:min(100%,300px);
   aspect-ratio:1/1;
-  object-fit:cover;
+  object-fit:contain;
   border-radius:15px;
   display:block;
-  margin:0 auto 18px;
+  margin:0 auto 16px;
   border:3px solid var(--border);
+  background:#eef2f6;
 }
 
 .review-number{
@@ -410,36 +433,34 @@ button{
   margin-bottom:22px;
 }
 
-.confirm-question{
-  font-size:19px;
-  font-weight:800;
-  line-height:1.5;
-  margin:20px 0 24px;
-}
-
 /* REVIEW BUTTONS */
 .review-buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
 }
 
 .change-btn{
   background:var(--red);
   color:white;
-  padding:17px 10px;
+  padding:16px 8px;
   border-radius:10px;
   font-size:15px;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .confirm-btn{
   background:var(--blue);
   color:white;
-  padding:17px 10px;
+  padding:16px 8px;
   border-radius:10px;
   font-size:15px;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .change-btn:active,
@@ -480,7 +501,7 @@ button{
   margin:25px auto;
   background:white;
   border:1px dashed #999;
-  width:min(100%, 360px);
+  width:min(100%,360px);
   padding:20px;
   text-align:center;
 }
@@ -713,16 +734,29 @@ button{
     font-size:21px;
   }
 
-  .review-name{
-    font-size:24px;
+  .choose-confirm-btn{
+    font-size:14px;
+    padding:15px 10px;
   }
 
-  .confirm-question{
-    font-size:17px;
+  .review-name{
+    font-size:24px;
+    margin-bottom:18px;
+  }
+
+  .review-photo{
+    width:min(100%,260px);
   }
 
   .review-buttons{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .change-btn,
+  .confirm-btn{
+    font-size:clamp(10px,3vw,13px);
+    padding:15px 4px;
   }
 
   .dashboard-grid{
@@ -733,7 +767,7 @@ button{
 /* ==========================================
    KHUSUS TABLET LANDSCAPE
    REDMI PAD SE
-   ========================================== */
+========================================== */
 
 @media (min-width:651px) and (orientation:landscape){
 
@@ -751,7 +785,6 @@ button{
     overflow:hidden;
   }
 
-  /* HEADER DIPERKECIL */
   .header{
     flex-shrink:0;
     padding:8px 24px;
@@ -782,7 +815,6 @@ button{
     margin-top:2px;
   }
 
-  /* NAV DIPERKECIL */
   .nav{
     flex-shrink:0;
   }
@@ -797,7 +829,6 @@ button{
     font-size:12px;
   }
 
-  /* AREA KONTEN */
   main.container{
     width:100%;
     max-width:1200px;
@@ -919,14 +950,14 @@ button{
     font-size:11px;
   }
 
-  /* TAHAP SCANNER */
+  /* SCANNER */
   #login .card{
     max-width:900px;
     padding:12px 22px;
   }
 
   #login .scanner-box{
-    width:min(100%, 420px);
+    width:min(100%,420px);
     max-height:36dvh;
     margin:10px auto;
   }
@@ -974,7 +1005,7 @@ button{
     font-size:12px;
   }
 
-  /* TAHAP PEMILIHAN CALON */
+  /* PEMILIHAN CALON */
   #vote .card{
     max-width:1000px;
     padding:12px 20px;
@@ -1013,7 +1044,7 @@ button{
   .candidate-photo{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
   }
 
   .candidate-info{
@@ -1028,7 +1059,7 @@ button{
   }
 
   .candidate-name{
-    font-size:clamp(15px, 2vw, 22px);
+    font-size:clamp(15px,2vw,22px);
   }
 
   .selected-mark{
@@ -1038,65 +1069,59 @@ button{
     font-size:11px;
   }
 
-  /* TAHAP KONFIRMASI */
+  .vote-action{
+    margin-top:10px;
+  }
+
+  .choose-confirm-btn{
+    max-width:500px;
+    padding:12px;
+    font-size:14px;
+  }
+
+  /* KONFIRMASI PILIHAN */
   #review .card{
-    max-width:1000px;
+    max-width:750px;
     padding:14px 22px;
   }
 
-  .review-card > div:last-child{
-    display:grid;
-    grid-template-columns:260px 1fr;
-    grid-template-rows:auto auto auto auto auto;
-    column-gap:24px;
-    align-items:center;
-    margin-top:12px !important;
-    text-align:center;
+  #review .page-title,
+  #review .page-subtitle{
+    display:none;
   }
 
-  .review-label{
-    grid-column:1 / -1;
-    margin-bottom:8px;
-    font-size:12px;
+  #review .review-card > div:last-child{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    margin-top:0 !important;
   }
 
   .review-photo{
-    grid-column:1;
-    grid-row:2 / 6;
-    width:100%;
-    max-width:230px;
-    max-height:32dvh;
-    aspect-ratio:4/3;
-    object-fit:cover;
-    margin:0 auto;
+    width:min(100%,210px);
+    max-width:210px;
+    max-height:28dvh;
+    aspect-ratio:1/1;
+    margin:0 auto 10px;
   }
 
   .review-number{
-    grid-column:2;
-    grid-row:2;
     font-size:14px;
-    margin:0 0 4px;
+    margin-bottom:4px;
   }
 
   .review-name{
-    grid-column:2;
-    grid-row:3;
-    font-size:24px;
-    margin:0 0 8px;
-  }
-
-  .confirm-question{
-    grid-column:2;
-    grid-row:4;
-    font-size:15px;
-    line-height:1.35;
-    margin:5px 0 12px;
+    font-size:23px;
+    margin-bottom:13px;
   }
 
   .review-buttons{
-    grid-column:2;
-    grid-row:5;
-    gap:10px;
+    grid-template-columns:1fr 1fr;
+    width:100%;
+    max-width:550px;
+    gap:12px;
   }
 
   .change-btn,
@@ -1105,7 +1130,7 @@ button{
     font-size:13px;
   }
 
-  /* TAHAP BUKTI */
+  /* BUKTI SIMULASI */
   #success .card{
     max-width:900px;
     display:grid;
@@ -1291,7 +1316,8 @@ button{
   }
 
   .review-photo{
-    max-height:27dvh;
+    max-height:24dvh;
+    width:min(100%,180px);
   }
 
   .receipt{
@@ -1305,12 +1331,12 @@ button{
   }
 }
 
-/* FOTO CALON TAMPIL UTUH — TIDAK TERPOTONG */
+/* FOTO CALON TAMPIL UTUH */
 .candidate-photo,
-.review-photo {
-  object-fit: contain !important;
-  object-position: center;
-  background: #eef2f6;
+.review-photo{
+  object-fit:contain !important;
+  object-position:center;
+  background:#eef2f6;
 }
 </style>
 </head>
@@ -1486,6 +1512,19 @@ button{
       </div>
 
     </div>
+
+    <!-- TOMBOL PILIHAN -->
+    <div class="vote-action">
+      <button
+        id="chooseCandidateBtn"
+        class="choose-confirm-btn"
+        onclick="showReview()"
+        disabled
+      >
+        PILIH NOMOR URUT
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -1500,8 +1539,6 @@ button{
     </div>
 
     <div style="margin-top:25px;">
-
-      <div class="review-label">CALON YANG ANDA PILIH</div>
 
       <img
         id="reviewPhoto"
@@ -1518,18 +1555,16 @@ button{
         NAMA CALON
       </div>
 
-      <div class="confirm-question">
-        Apakah Anda yakin dengan pilihan tersebut?
-      </div>
-
       <div class="review-buttons">
+
         <button class="change-btn" onclick="changeChoice()">
           UBAH PILIHAN
         </button>
 
         <button class="confirm-btn" onclick="confirmVote()">
-          KONFIRMASI PILIHAN
+          PILIH
         </button>
+
       </div>
 
     </div>
@@ -1752,7 +1787,7 @@ function showLogin(){
 
   setTimeout(() => {
     startScanner();
-  }, 250);
+  },250);
 
 }
 
@@ -1761,7 +1796,7 @@ function showLogin(){
    STATUS KAMERA
 ========================================== */
 
-function setCameraStatus(message, type = ""){
+function setCameraStatus(message,type = ""){
 
   const status =
     document.getElementById("cameraStatus");
@@ -1951,12 +1986,16 @@ async function verifyScannedCode(code){
 
 function showVote(){
 
+  selected = null;
+
   clearCandidateSelection();
 
   show("vote");
 
 }
 
+
+/* RESET TAMPILAN PILIHAN */
 function clearCandidateSelection(){
 
   document
@@ -1967,8 +2006,20 @@ function clearCandidateSelection(){
     .getElementById("candidate2")
     ?.classList.remove("selected");
 
+  const button =
+    document.getElementById("chooseCandidateBtn");
+
+  if(button){
+
+    button.disabled = true;
+    button.textContent = "PILIH NOMOR URUT";
+
+  }
+
 }
 
+
+/* MEMILIH CALON */
 function selectCandidate(number){
 
   if(!candidates[number]){
@@ -1986,9 +2037,17 @@ function selectCandidate(number){
     card.classList.add("selected");
   }
 
-  setTimeout(() => {
-    showReview();
-  }, 450);
+  const button =
+    document.getElementById("chooseCandidateBtn");
+
+  if(button){
+
+    button.textContent =
+      "PILIH NOMOR URUT " + number;
+
+    button.disabled = false;
+
+  }
 
 }
 
@@ -2018,6 +2077,7 @@ function showReview(){
   show("review");
 
 }
+
 
 function changeChoice(){
 
@@ -2159,6 +2219,7 @@ function showAdmin(){
   show("admin");
 
 }
+
 
 function updateDashboard(){
 
