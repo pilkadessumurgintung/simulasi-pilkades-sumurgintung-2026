@@ -1338,6 +1338,276 @@ button{
   object-position:center;
   background:#eef2f6;
 }
+  
+/* ==========================================
+   REDESAIN BERANDA - MODERN PREMIUM
+========================================== */
+
+#home{
+  width:100%;
+  max-width:850px;
+  margin:0 auto;
+}
+
+/* HERO UTAMA */
+#home .hero{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:32px 30px;
+  margin:8px 0 22px;
+  text-align:left;
+  border-radius:22px;
+  background:linear-gradient(135deg,#082d67 0%,#0d47a1 60%,#1976d2 100%);
+  box-shadow:0 12px 28px rgba(13,71,161,.18);
+  position:relative;
+  overflow:hidden;
+}
+
+#home .hero::after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-75px;
+  top:-105px;
+}
+
+#home .hero-mascot{
+  width:145px;
+  max-width:145px;
+  height:145px;
+  object-fit:contain;
+  margin:0;
+  flex-shrink:0;
+  position:relative;
+  z-index:1;
+}
+
+#home .hero > div{
+  position:relative;
+  z-index:1;
+}
+
+#home .hero h1{
+  color:#fff;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin-bottom:3px;
+}
+
+#home .hero h2{
+  color:#fbc02d;
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+
+#home .hero p{
+  color:rgba(255,255,255,.9);
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* KOTAK PERHATIAN */
+#home .notice{
+  background:#fff;
+  border:1px solid #dce7f5;
+  border-left:5px solid #e6ad19;
+  border-radius:13px;
+  padding:18px 20px;
+  margin:0 0 17px;
+  color:#44546a;
+  font-size:14px;
+  line-height:1.65;
+  box-shadow:0 4px 14px rgba(20,50,90,.045);
+}
+
+#home .notice strong:first-child{
+  display:inline-block;
+  color:#8a6500;
+  font-size:12px;
+  letter-spacing:1px;
+  margin-bottom:4px;
+}
+
+/* TOMBOL MULAI */
+#home .primary-btn{
+  width:100%;
+  margin:0;
+  padding:19px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  color:#fff;
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:.7px;
+  box-shadow:0 7px 17px rgba(13,71,161,.2);
+  transition:transform .2s,box-shadow .2s;
+}
+
+#home .primary-btn:active{
+  transform:scale(.985);
+  box-shadow:0 3px 9px rgba(13,71,161,.18);
+}
+
+/* TAHAPAN SIMULASI */
+#home .steps{
+  gap:12px;
+  margin-top:22px;
+}
+
+#home .step{
+  padding:17px 8px;
+  border:1px solid #e1e8f0;
+  border-radius:13px;
+  background:#fff;
+  box-shadow:0 4px 13px rgba(20,50,90,.045);
+  transition:transform .2s;
+}
+
+#home .step-number{
+  width:36px;
+  height:36px;
+  background:linear-gradient(135deg,#0d47a1,#1976d2);
+  box-shadow:0 3px 8px rgba(13,71,161,.2);
+  margin-bottom:10px;
+  font-size:15px;
+}
+
+#home .step-title{
+  color:#26384d;
+  font-size:12px;
+  letter-spacing:.3px;
+}
+
+/* TAMPILAN HP */
+@media(max-width:650px){
+
+  #home .hero{
+    flex-direction:column;
+    text-align:center;
+    gap:12px;
+    padding:24px 16px;
+    border-radius:17px;
+  }
+
+  #home .hero-mascot{
+    width:115px;
+    max-width:115px;
+    height:115px;
+  }
+
+  #home .hero h1{
+    font-size:25px;
+  }
+
+  #home .hero h2{
+    font-size:16px;
+    margin-bottom:9px;
+  }
+
+  #home .hero p{
+    font-size:13px;
+  }
+
+  #home .notice{
+    padding:15px;
+    font-size:13px;
+  }
+
+  #home .primary-btn{
+    padding:17px;
+    font-size:16px;
+  }
+
+  #home .steps{
+    gap:10px;
+    margin-top:17px;
+  }
+
+  #home .step{
+    padding:14px 6px;
+  }
+}
+
+/* TAMPILAN TABLET LANDSCAPE */
+@media(min-width:651px) and (orientation:landscape){
+
+  #home .hero{
+    padding:20px 28px;
+    gap:25px;
+    border-radius:18px;
+  }
+
+  #home .hero-mascot{
+    width:105px;
+    max-width:105px;
+    height:105px;
+  }
+
+  #home .hero h1{
+    font-size:27px;
+  }
+
+  #home .hero h2{
+    font-size:17px;
+  }
+
+  #home .hero p{
+    font-size:13px;
+  }
+
+  #home .notice{
+    padding:14px 16px;
+  }
+
+  #home .step{
+    padding:12px 6px;
+  }
+}
+
+/* TABLET DENGAN TINGGI LAYAR PENDEK */
+@media(min-width:651px) and (orientation:landscape) and (max-height:700px){
+
+  #home .hero{
+    padding:12px 24px;
+    margin-bottom:10px;
+  }
+
+  #home .hero-mascot{
+    width:78px;
+    height:78px;
+  }
+
+  #home .hero h1{
+    font-size:22px;
+  }
+
+  #home .hero h2{
+    font-size:15px;
+    margin-bottom:5px;
+  }
+
+  #home .hero p{
+    font-size:12px;
+  }
+
+  #home .notice{
+    padding:9px 12px;
+    font-size:11px;
+  }
+
+  #home .steps{
+    margin-top:8px;
+  }
+}
+
 </style>
 </head>
 
