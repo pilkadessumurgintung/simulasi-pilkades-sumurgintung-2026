@@ -782,7 +782,7 @@ button{
     height:100dvh;
     display:flex;
     flex-direction:column;
-    
+    overflow:hidden;
   }
 
   .header{
@@ -853,7 +853,7 @@ button{
     width:100%;
     min-height:0;
     max-height:100%;
-    overflow-y:auto;
+    overflow:hidden;
   }
 
   .card{
@@ -2578,6 +2578,14 @@ button{
   line-height: 1.6;
 }
 
+/* KHUSUS HALAMAN PENGATURAN PRINTER */
+#printer.page.active{
+  flex:1;
+  min-height:0;
+  max-height:none;
+  overflow-y:auto;
+  justify-content:flex-start;
+}
 </style>
 </head>
 
