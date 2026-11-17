@@ -1608,6 +1608,221 @@ button{
   }
 }
 
+  
+/* ==========================================
+   REDESAIN HALAMAN PEMILIHAN CALON
+========================================== */
+
+#vote{
+  max-width:950px;
+  margin:0 auto;
+}
+
+#vote .card{
+  border:1px solid #e1e8f0;
+  border-radius:20px;
+  padding:25px;
+  background:#fff;
+  box-shadow:0 8px 25px rgba(20,50,90,.07);
+}
+
+#vote .page-title{
+  color:#082d67;
+  font-size:25px;
+  font-weight:900;
+  text-align:center;
+  margin-bottom:8px;
+}
+
+#vote .page-subtitle{
+  color:#64748b;
+  font-size:14px;
+  text-align:center;
+  line-height:1.6;
+}
+
+#vote .instruction{
+  background:#f0f6ff;
+  border:1px solid #d7e6fa;
+  border-left:4px solid #1976d2;
+  color:#29476b;
+  border-radius:12px;
+  padding:14px 17px;
+  margin:20px 0;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* SUSUNAN KARTU CALON */
+#vote .candidates{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  margin:22px 0;
+}
+
+#vote .candidate{
+  position:relative;
+  overflow:hidden;
+  border:2px solid #e1e8f0;
+  border-radius:17px;
+  background:#fff;
+  padding:0;
+  box-shadow:0 5px 16px rgba(20,50,90,.06);
+  transition:border-color .2s,box-shadow .2s,transform .2s;
+}
+
+#vote .candidate:active{
+  transform:scale(.99);
+}
+
+#vote .candidate.selected{
+  border:3px solid #1976d2;
+  background:#f5f9ff;
+  box-shadow:0 8px 22px rgba(25,118,210,.17);
+}
+
+/* FOTO CALON */
+#vote .candidate-photo-wrap{
+  width:100%;
+  height:260px;
+  background:#edf2f8;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#vote .candidate-photo{
+  width:100%;
+  height:100%;
+  object-fit:contain !important;
+  object-position:center;
+}
+
+/* IDENTITAS CALON */
+#vote .candidate-info{
+  padding:17px 12px 20px;
+  text-align:center;
+}
+
+#vote .candidate-number{
+  display:inline-block;
+  background:#0d47a1;
+  color:#fff;
+  padding:6px 17px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+
+#vote .candidate-name{
+  color:#102e59;
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin:0;
+}
+
+/* TANDA PILIHAN */
+#vote .selected-mark{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#16a34a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:900;
+  opacity:0;
+  transform:scale(.7);
+  transition:.2s;
+}
+
+#vote .candidate.selected .selected-mark{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* TAMPILAN HP */
+@media(max-width:650px){
+
+  #vote .card{
+    padding:16px 12px;
+    border-radius:16px;
+  }
+
+  #vote .page-title{
+    font-size:21px;
+  }
+
+  #vote .page-subtitle{
+    font-size:12px;
+  }
+
+  #vote .instruction{
+    padding:12px;
+    font-size:12px;
+    margin:15px 0;
+  }
+
+  #vote .candidates{
+    gap:11px;
+    margin:16px 0;
+  }
+
+  #vote .candidate-photo-wrap{
+    height:175px;
+  }
+
+  #vote .candidate-info{
+    padding:12px 6px 15px;
+  }
+
+  #vote .candidate-number{
+    font-size:10px;
+    padding:5px 12px;
+  }
+
+  #vote .candidate-name{
+    font-size:15px;
+  }
+
+  #vote .selected-mark{
+    width:28px;
+    height:28px;
+    font-size:16px;
+    top:8px;
+    right:8px;
+  }
+}
+
+/* TAMPILAN TABLET LANDSCAPE */
+@media(min-width:651px) and (orientation:landscape){
+
+  #vote .candidates{
+    max-width:720px;
+    margin:20px auto;
+    gap:25px;
+  }
+
+  #vote .candidate-photo-wrap{
+    height:210px;
+  }
+
+  #vote .candidate-info{
+    padding:14px;
+  }
+}
+
+
 </style>
 </head>
 
