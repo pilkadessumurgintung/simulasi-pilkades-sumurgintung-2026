@@ -3628,13 +3628,14 @@ function updateDashboard(){
 
 function resetDemo(){
 
-  const yakin = confirm(
-    "Apakah Anda yakin ingin menghapus seluruh data simulasi pada perangkat ini?"
-  );
+  localStorage.removeItem("pilkades_votes");
+  localStorage.removeItem("pilkades_used_codes");
 
-  if(!yakin){
-    return;
-  }
+  updateDashboard();
+
+  alert("Data simulasi berhasil direset.");
+
+}
 
   localStorage.removeItem("pilkades_votes");
   localStorage.removeItem("pilkades_used_codes");
