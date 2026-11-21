@@ -2704,7 +2704,7 @@ button{
 
   <div class="card">
 
-    <div class="page-title">PENGATURAN PRINTER</div>
+    <div class="page-title">KELOLA PRINTER</div>
 
     <div class="page-subtitle">
       Hubungkan printer thermal Bluetooth sebelum memulai simulasi.
@@ -2714,10 +2714,15 @@ button{
 
       <div class="printer-icon">🖨️</div>
 
-      <h3>PRINTER THERMAL BLUETOOTH</h3>
+      <h3>PERANGKAT PRINTER</h3>
 
-      <div class="printer-status">
-        BELUM TERHUBUNG
+      <div class="printer-info-row">
+      <span>STATUS BLUETOOTH</span>
+      <strong id="bluetoothStatus">MEMERIKSA...</strong>
+      </div>
+
+      <div id="printerStatus" class="printer-status">
+      TIDAK TERHUBUNG
       </div>
 
       <button class="printer-connect-btn"
@@ -2742,10 +2747,7 @@ button{
     <strong>Bluetooth</strong>
   </div>
 
-  <div class="printer-info-row">
-    <span>UKURAN KERTAS</span>
-    <strong>58 mm</strong>
-  </div>
+  
 
 </div>
 
@@ -2762,16 +2764,17 @@ button{
     BELUM DAPAT DIUJI
   </div>
 
+  <button id="printerTestBtn" class="printer-connect-btn" type="button" disabled>
+  TES PRINT
+  </button>
+
   <small>
     Fitur uji cetak akan diaktifkan setelah printer terhubung.
   </small>
 
 </div>
 
-      <p>
-        Pengaturan koneksi printer akan tersedia setelah
-        perangkat printer dikenali dan dikonfigurasi.
-      </p>
+      
 
     </div>
 
