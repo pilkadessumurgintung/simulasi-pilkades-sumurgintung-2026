@@ -642,22 +642,22 @@ button{
 }
 
 /* PRINT */
-@media print{
-  body *{
-    visibility:hidden !important;
+@media print {
+  body * {
+    visibility: hidden !important;
   }
 
   #success,
-  #success *{
-    visibility:visible !important;
+  #success * {
+    visibility: visible !important;
   }
 
-  #success{
-    position:absolute;
-    left:0;
-    top:0;
-    width:80mm;
-    background:white;
+  #success {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58mm;
+    background: white;
   }
 
   .header,
@@ -667,18 +667,18 @@ button{
   .home-btn,
   .success-icon,
   .success h2,
-  .success > p{
-    display:none !important;
+  .success > p {
+    display: none !important;
   }
 
-  .receipt{
-    width:80mm;
-    border:none;
-    margin:0;
-    padding:5mm;
+  .receipt {
+    width: 58mm;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    padding: 2mm;
   }
 }
-
 /* MOBILE */
 @media(max-width:650px){
   .container{
