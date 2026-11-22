@@ -643,6 +643,7 @@ button{
 
 /* PRINT */
 
+
 @media print {
   body * {
     visibility: hidden !important;
@@ -660,7 +661,7 @@ button{
     width: 48mm !important;
     max-width: 48mm !important;
     background: white;
-    overflow: hidden;
+    overflow: visible !important;
   }
 
   .header,
@@ -674,16 +675,61 @@ button{
     display: none !important;
   }
 
-  .receipt {
+  #success .receipt {
     width: 48mm !important;
     max-width: 48mm !important;
-    box-sizing: border-box;
-    border: none;
-    margin: 0;
-    padding: 1mm;
+    box-sizing: border-box !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 1mm !important;
+    overflow: visible !important;
+  }
+
+  #success .receipt-title {
+    font-size: 14px !important;
+    max-width: 100%;
     overflow-wrap: anywhere;
   }
+
+  #success .receipt-subtitle {
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  #success .receipt-id {
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 5px 4px !important;
+    font-size: 11px !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  #success .receipt-date {
+    font-size: 10px !important;
+    overflow-wrap: anywhere;
+  }
+
+  #success #receiptQR {
+    width: 100%;
+    min-height: auto !important;
+    margin: 0 auto 8px !important;
+  }
+
+  #success #receiptQR img,
+  #success #receiptQR canvas {
+    width: 38mm !important;
+    max-width: 38mm !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 1mm !important;
+    border-radius: 0 !important;
+  }
 }
+
 
 /* MOBILE */
 @media(max-width:650px){
