@@ -2725,9 +2725,8 @@ button{
       TIDAK TERHUBUNG
       </div>
 
-      <button class="printer-connect-btn"
-  onclick="alert('Koneksi Bluetooth akan dikonfigurasi setelah tipe printer dikenali.')">
-  HUBUNGKAN PRINTER MELALUI BLUETOOTH
+      <button id="printerConnectBtn" class="printer-connect-btn" type="button" onclick="connectPrinter()">
+  HUBUNGKAN PRINTER
 </button>
 
       <div class="printer-device-info">
@@ -3682,6 +3681,41 @@ document.addEventListener(
   }
 );
 
+</script>
+  <script>
+async function connectPrinter() {
+
+  if (!("serial" in navigator)) {
+    alert("Browser ini belum mendukung koneksi printer melalui Web Serial.");
+    return;
+  }
+
+  try {
+
+    const port = await navigator.serial.requestPort();
+
+    await port.open({
+      baudRate: 9600
+    });
+
+    document.getElementById("printerStatus").textContent = "TERHUBUNG";
+
+    document.getElementById("printerTestBtn").disabled = false;
+
+    document.getElementById("printerConnectBtn").textContent =
+      "PRINTER TERHUBUNG";
+
+    document.getElementById("printerConnectBtn").disabled = true;
+
+  } catch (error) {
+
+    console.error("Koneksi printer gagal:", error);
+
+    alert("Printer belum berhasil terhubung.");
+
+  }
+
+}
 </script>
 
 <!-- ==========================================
