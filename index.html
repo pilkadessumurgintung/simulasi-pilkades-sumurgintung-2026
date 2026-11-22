@@ -3711,7 +3711,7 @@ async function connectPrinter() {
 
     console.error("Koneksi printer gagal:", error);
 
-    alert("Printer belum berhasil terhubung.");
+    alert("Koneksi gagal: " + error.name + " - " + error.message);
 
   }
 
