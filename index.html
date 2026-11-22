@@ -642,6 +642,7 @@ button{
 }
 
 /* PRINT */
+
 @media print {
   body * {
     visibility: hidden !important;
@@ -656,8 +657,10 @@ button{
     position: absolute;
     left: 0;
     top: 0;
-    width: 58mm;
+    width: 48mm !important;
+    max-width: 48mm !important;
     background: white;
+    overflow: hidden;
   }
 
   .header,
@@ -672,13 +675,16 @@ button{
   }
 
   .receipt {
-    width: 58mm;
+    width: 48mm !important;
+    max-width: 48mm !important;
     box-sizing: border-box;
     border: none;
     margin: 0;
-    padding: 2mm;
+    padding: 1mm;
+    overflow-wrap: anywhere;
   }
 }
+
 /* MOBILE */
 @media(max-width:650px){
   .container{
