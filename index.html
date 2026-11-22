@@ -3695,7 +3695,7 @@ async function connectPrinter() {
     const port = await navigator.serial.requestPort();
 
     await port.open({
-      baudRate: 9600
+      baudRate: 460800
     });
 
     document.getElementById("printerStatus").textContent = "TERHUBUNG";
