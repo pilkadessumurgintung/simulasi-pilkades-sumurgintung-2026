@@ -3687,9 +3687,29 @@ function renderReceipt(){
    CETAK
 ========================================== */
 
+
 function printReceipt(){
-  window.location.href = "rawbt:TES-CETAK-LANGSUNG-PILKADES";
+
+  const text = "TES CETAK LANGSUNG PILKADES\n";
+
+  const bytes = new Uint8Array([
+    0x1B, 0x40,
+    ...new TextEncoder().encode(text),
+    0x0A, 0x0A, 0x0A
+  ]);
+
+  let binary = "";
+
+  bytes.forEach(b => {
+    binary += String.fromCharCode(b);
+  });
+
+  const base64 = btoa(binary);
+
+  window.location.href =
+    "rawbt:base64," + base64;
 }
+
 
 
 /* ==========================================
