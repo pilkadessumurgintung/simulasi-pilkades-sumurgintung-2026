@@ -3688,6 +3688,7 @@ function renderReceipt(){
 ========================================== */
 
 
+
 function printReceipt(){
 
   const text = "TES CETAK LANGSUNG PILKADES\n";
@@ -3707,7 +3708,8 @@ function printReceipt(){
   const base64 = btoa(binary);
 
   window.location.href =
-    "rawbt:base64," + base64;
+    "intent:base64," + base64 +
+    "#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end;";
 }
 
 
