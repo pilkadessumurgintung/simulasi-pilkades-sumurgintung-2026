@@ -282,7 +282,7 @@ button{
   display:block !important;
   width:100% !important;
   max-width:100% !important;
-  height:100% !important;
+  height:auto !important;
   object-fit:cover !important;
 }
 
@@ -290,7 +290,7 @@ button{
   display:block !important;
   width:100% !important;
   max-width:100% !important;
-  height:100% !important;
+  height:auto !important;
   object-fit:cover !important;
 }
 
@@ -1054,11 +1054,10 @@ button{
   }
 
   #login .scanner-box{
-    width:min(100%,420px);
-    max-height:36dvh;
-    margin:10px auto;
-  }
-
+  width:100%;
+  max-height:none !important;
+  margin:10px auto;
+}
   #reader{
     width:100%;
   }
@@ -1401,7 +1400,7 @@ button{
   }
 
   #login .scanner-box{
-    max-height:31dvh;
+    max-height:none !important;
   }
 
   #reader video{
