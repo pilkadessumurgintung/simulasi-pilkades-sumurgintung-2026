@@ -265,12 +265,30 @@ button{
   background:#000;
 }
 
-.scanner-box #reader video{
+/* MEMPERBESAR TAMPILAN KAMERA */
+.scanner-box #reader__scan_region{
+  width:100% !important;
+  max-width:none !important;
+  min-height:600px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background:#000;
+  overflow:hidden;
+}
+
+.scanner-box #reader__scan_region video{
   display:block !important;
   width:100% !important;
-  max-width:100% !important;
-  height:auto !important;
-  object-fit:contain !important;
+  max-width:none !important;
+  height:600px !important;
+  object-fit:cover !important;
+}
+
+.scanner-box #reader video{
+  width:100% !important;
+  max-width:none !important;
+  object-fit:cover !important;
 }
 .camera-status{
   text-align:center;
