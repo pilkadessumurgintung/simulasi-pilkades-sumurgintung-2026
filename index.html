@@ -3248,6 +3248,7 @@ function setCameraStatus(message,type = ""){
    MENJALANKAN KAMERA
 ========================================== */
 
+
 async function startScanner(){
 
   const retryButton =
@@ -3290,10 +3291,20 @@ async function startScanner(){
 
       {
         fps:10,
-        qrbox:{
-          width:250,
-          height:250
+
+        qrbox:(viewfinderWidth, viewfinderHeight) => {
+
+          const size = Math.floor(
+            Math.min(viewfinderWidth, viewfinderHeight) * 0.90
+          );
+
+          return {
+            width:size,
+            height:size
+          };
+
         }
+
       },
 
       decodedText => {
@@ -3337,6 +3348,7 @@ async function startScanner(){
   }
 
 }
+
 
 
 /* ==========================================
