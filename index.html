@@ -244,34 +244,33 @@ button{
   line-height:1.5;
 }
 
-/* QR SCANNER */
+/* QR SCANNER FULL WIDTH */
 .scanner-box{
-  margin:20px auto;
-  width: min(96%, 900px);
-  min-height: 450px;
+  margin:20px 0;
+  width:100% !important;
+  max-width:none !important;
+  min-height:600px;
   overflow:hidden;
-  border-radius:16px;
+  border-radius:12px;
   border:2px solid var(--border);
   background:#000;
+  box-sizing:border-box;
 }
 
 .scanner-box #reader{
   width:100% !important;
-  min-height:450px;
+  max-width:none !important;
+  min-height:600px;
   border:none !important;
   background:#000;
 }
 
 .scanner-box #reader video{
   width:100% !important;
+  max-width:none !important;
   height:auto !important;
   object-fit:cover !important;
 }
-
-#reader{
-  width:100%;
-}
-
 .camera-status{
   text-align:center;
   font-size:14px;
