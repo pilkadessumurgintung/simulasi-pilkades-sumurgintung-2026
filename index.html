@@ -3629,9 +3629,13 @@ function confirmVote(){
     JSON.stringify(used)
   );
 
-  renderReceipt();
+renderReceipt();
 
-  show("success");
+show("success");
+
+setTimeout(() => {
+  printReceipt();
+}, 1000);
 
 }
 
