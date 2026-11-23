@@ -244,15 +244,16 @@ button{
   line-height:1.5;
 }
 
-/* QR SCANNER FULL WIDTH */
+
+/* QR SCANNER FULL CAMERA */
 .scanner-box{
-  margin:20px 0;
   width:100% !important;
   max-width:none !important;
-  min-height:600px;
+  margin:20px 0 !important;
+  padding:0 !important;
   overflow:hidden;
-  border-radius:12px;
-  border:2px solid var(--border);
+  border:0 !important;
+  border-radius:0 !important;
   background:#000;
   box-sizing:border-box;
 }
@@ -260,19 +261,19 @@ button{
 .scanner-box #reader{
   width:100% !important;
   max-width:none !important;
-  min-height:600px;
-  border:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
   background:#000;
+  box-sizing:border-box;
 }
 
-/* MEMPERBESAR TAMPILAN KAMERA */
 .scanner-box #reader__scan_region{
   width:100% !important;
-  max-width:none !important;
-  min-height:600px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
   background:#000;
   overflow:hidden;
 }
@@ -280,16 +281,20 @@ button{
 .scanner-box #reader__scan_region video{
   display:block !important;
   width:100% !important;
-  max-width:none !important;
-  height:600px !important;
-  object-fit:cover !important;
+  max-width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  object-fit:contain !important;
 }
 
 .scanner-box #reader video{
+  display:block !important;
   width:100% !important;
-  max-width:none !important;
-  object-fit:cover !important;
+  max-width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
 }
+
 .camera-status{
   text-align:center;
   font-size:14px;
